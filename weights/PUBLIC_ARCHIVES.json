@@ -1,0 +1,57 @@
+{
+  "status": "Files prepared locally; verify actual GitHub release assets before claiming public availability",
+  "runtime": {
+    "file": "public_runtime_code_v4.zip",
+    "bytes": 4169988,
+    "sha256": "b379ee46a55eb490da24371069ca7693dcf5daa48eb5a1568cce0d72044f3abb"
+  },
+  "weights": [
+    {
+      "file": "public_weights_initial_penn.zip",
+      "source_file": "weights_initial_penn.zip",
+      "bytes": 156967156,
+      "sha256": "0888077e3f6c6ebb6d6b8f5ce9627d7daaa5fce0d23216fd237de0dfb060c641",
+      "checkpoint_count": 2,
+      "path_prefix_replacements": 10,
+      "tensor_storage_members_unchanged": 1126
+    },
+    {
+      "file": "public_weights_public_e30.zip",
+      "source_file": "weights_public_e30.zip",
+      "bytes": 313898734,
+      "sha256": "e4413760d30076f16744392cd9aaa03cf84081a41d07288d59b8e7027d27db96",
+      "checkpoint_count": 4,
+      "path_prefix_replacements": 20,
+      "tensor_storage_members_unchanged": 2252
+    },
+    {
+      "file": "public_weights_public_e100.zip",
+      "source_file": "weights_public_e100.zip",
+      "bytes": 314968129,
+      "sha256": "356c104b7d373cb8f50e1a36f734823cfb6cdd235efbd60ed4ae3d50f911d23b",
+      "checkpoint_count": 4,
+      "path_prefix_replacements": 20,
+      "tensor_storage_members_unchanged": 2252
+    },
+    {
+      "file": "public_weights_ablation.zip",
+      "source_file": "weights_ablation.zip",
+      "bytes": 245742964,
+      "sha256": "5a2f18399d788b87e307ef578c9c180d375d22bef5642e74c017b70bc4d11e93",
+      "checkpoint_count": 3,
+      "path_prefix_replacements": 15,
+      "tensor_storage_members_unchanged": 1732
+    },
+    {
+      "file": "public_weights_robustness.zip",
+      "source_file": "weights_robustness.zip",
+      "bytes": 718220237,
+      "sha256": "9b367dec998240e5f115b4dfe778a5a222b95aea73b157680a20919ad1a3cad2",
+      "checkpoint_count": 9,
+      "path_prefix_replacements": 45,
+      "tensor_storage_members_unchanged": 4980
+    }
+  ],
+  "method": "Original archives preserved; equal-length path-prefix replacement only in checkpoint data.pkl; tensor-storage bytes unchanged",
+  "load_test": "Penn--Fudan baseline and FDPN original/public checkpoints loaded on CPU and their model state_dict tensors compared equal"
+}

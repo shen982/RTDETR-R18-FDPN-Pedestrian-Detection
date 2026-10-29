@@ -22,14 +22,17 @@ AP values are percentages. VOC and COCO rows are exploratory fixed-subset, singl
 ## Repository guide
 
 - [`paper/`](paper/README.md): the final English manuscript, LaTeX, figures, tables, and bibliography.
+- [`src/`](src/README.md) and [`configs/`](configs/README.md): attributed FDPN operator extraction and the exact baseline, adaptation, control, and ablation model graphs.
+- [`scripts/`](scripts/README.md) and [`tests/`](tests/test_fdpn_shapes.py): reproduction entry points and CPU-only module-interface checks.
+- [`artifacts/public_runtime_code_v4.zip`](artifacts/README.md): path-safe full runtime **source** archive with a checkpoint manifest matched to the separately prepared public weight archives; no data images or checkpoints.
 - [`evidence/`](evidence/README.md): public-ready aggregate statistics, subset manifests, and checksums. These summaries do not replace the complete local submission archive.
 - [`docs/`](docs/REPRODUCTION.md): reproduction boundaries, sources, and required local archives.
-- [`weights/`](weights/README.md): integrity manifest for the checkpoint archives; no model binary is tracked in Git.
+- [`weights/`](weights/README.md): original and public-variant integrity manifests plus a release guide; no model binary is tracked in Git.
 - [`LICENSES.md`](LICENSES.md): third-party attribution and redistribution boundaries.
 
 ## Release status and reproducibility
 
-The paper and selected public-safe summaries are available here. The full source snapshot and checkpoint archives remain in the separately prepared **local course-submission package**. They have **not** been uploaded to this repository or linked as public downloads. The supplied FDPN bundle's redistribution permission must be checked before its source is published; attribution alone is not a license. Do not infer code or weight availability from the existence of this repository.
+The paper, selected public-safe summaries, core FDPN extraction, model configurations, and selected reproduction scripts are available here. A curated runtime source ZIP is also provided under `artifacts/`; it omits machine-specific raw records and is not a complete software environment. Path-redacted checkpoint archives have been prepared and verified locally, but have **not yet** been uploaded or linked as public downloads. The maintainer has stated authorization to redistribute the supplied FDPN module; the original topology remains attributed to its source bundle. Do not infer weight availability from this repository.
 
 Penn--Fudan, VOC2007, and COCO2017 images are not redistributed. The three-seed sample is small, the Penn--Fudan test partition was reused during exploration, and a near-parameter-matched widened-neck control cannot isolate every capacity effect. Read the manuscript's limitations alongside the positive AP50:95 results.
 

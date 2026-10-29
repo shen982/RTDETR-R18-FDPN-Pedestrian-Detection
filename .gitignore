@@ -20,4 +20,5 @@ venv/
 *.pth
 *.ckpt
 weights_*.zip
+public_weights_*.zip
 code.zip
