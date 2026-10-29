@@ -8,4 +8,4 @@ From this directory, install Tectonic or an IEEEtran-compatible LaTeX toolchain,
 make
 ```
 
-The repository does not bundle the platform-specific TeX binary or font cache. Rebuilding the PDF does not train or evaluate a detector. The paper's GitHub link identifies this repository; it does not imply that the full runtime or checkpoints are already public. See the [repository README](../README.md) and [provenance notes](../LICENSES.md).
+The repository does not bundle the platform-specific TeX binary or font cache. Rebuilding the PDF does not train or evaluate a detector. The source and path-redacted checkpoint assets are available through the [v1.0.0 reproducibility release](https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/tag/v1.0.0). See the [repository README](../README.md) and [provenance notes](../LICENSES.md).

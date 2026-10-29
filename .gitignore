@@ -9,6 +9,9 @@ __pycache__/
 .pytest_cache/
 .venv/
 venv/
+third_party/tectonic-cache/
+third_party/tectonic-config/
+third_party/tectonic-data/
 
 # Third-party image archives, run outputs, and model binaries must not enter
 # ordinary Git history. Weight archives are handled separately.

@@ -8,4 +8,4 @@ This directory contains selected machine-readable statistics and dataset split m
 - `fdpn_ablation/summary.json`: component-sensitivity summary.
 - `datasets/*/split_manifest.json`: split definitions, without original images.
 
-The values in the paper are traceable to the archived held-out test records and checkpoint SHA-256 hashes in the local submission package. This public subset is an audit aid, not a claim of a complete independent reproduction kit.
+The values in the paper are traceable to the archived held-out test records and checkpoint SHA-256 hashes in the local submission package; the public checkpoint variants and their hashes are available in the [v1.0.0 reproducibility release](https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/tag/v1.0.0). This public subset is an audit aid, not a claim that dataset images or a preconfigured environment are redistributed.

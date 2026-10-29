@@ -1,5 +1,5 @@
 {
-  "status": "Files prepared locally; verify actual GitHub release assets before claiming public availability",
+  "status": "Published as GitHub Release v1.0.0; verify downloaded asset sizes and SHA-256 values before use",
   "runtime": {
     "file": "public_runtime_code_v4.zip",
     "bytes": 4169988,
