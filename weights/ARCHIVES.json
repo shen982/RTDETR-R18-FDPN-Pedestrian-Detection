@@ -1,0 +1,48 @@
+{
+  "experiment_count": 22,
+  "all_source_weight_hashes_rechecked": true,
+  "archives": [
+    {
+      "file": "code.zip",
+      "bytes": 9881669,
+      "sha256": "9941b479be2e5679d774c786c0b1e52eef3f370780e09a0b1dbeeb684d0e1b55",
+      "members": 2183,
+      "zip_crc_verified": true
+    },
+    {
+      "file": "weights_initial_penn.zip",
+      "bytes": 156974249,
+      "sha256": "5748da08dcb7e1fed9c8b06ec4b79eac4e20fdaa5ba40d503b7e8009684eaf2f",
+      "members": 2,
+      "zip_crc_verified": true
+    },
+    {
+      "file": "weights_public_e30.zip",
+      "bytes": 313914269,
+      "sha256": "75cab3989bc5bba15469ac799a8071c270399fd29bf35ae2f6e42fbdfd019097",
+      "members": 4,
+      "zip_crc_verified": true
+    },
+    {
+      "file": "weights_public_e100.zip",
+      "bytes": 314983050,
+      "sha256": "ec20bd4a811652916b06164b35a7d8191d06add6e74061fa4cd19905bffbda6c",
+      "members": 4,
+      "zip_crc_verified": true
+    },
+    {
+      "file": "weights_ablation.zip",
+      "bytes": 245754633,
+      "sha256": "8b51fe51f5169e4cbe4f0c5c3b7d8a3945bbfbb8079806819a4ab9368ef43902",
+      "members": 3,
+      "zip_crc_verified": true
+    },
+    {
+      "file": "weights_robustness.zip",
+      "bytes": 718253547,
+      "sha256": "cbdc04a7e75d15832be72ce2203dc2ae80b480393293143f9903ea0534d8ac18",
+      "members": 9,
+      "zip_crc_verified": true
+    }
+  ]
+}

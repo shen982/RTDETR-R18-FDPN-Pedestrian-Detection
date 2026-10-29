@@ -1,0 +1,19 @@
+\begin{table*}[t]
+\centering
+\caption{Test accuracy of validation-selected best checkpoints: initial Penn--Fudan runs and the 100-epoch public-subset extension (seed 2026). Budgets are matched within each dataset. AP is in percent; differences are percentage points. Bold marks the higher paired value.}
+\label{tab:test}
+\small
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+& \multicolumn{2}{c}{Penn--Fudan (30 epochs)} & \multicolumn{2}{c}{VOC-person (100 epochs)} & \multicolumn{2}{c}{COCO-person (100 epochs)}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Model & AP$_{50}$ & AP$_{50:95}$ & AP$_{50}$ & AP$_{50:95}$ & AP$_{50}$ & AP$_{50:95}$\\
+\midrule
+RT-DETR-R18 & 63.45 & 40.42 & 36.30 & 16.71 & 16.44 & 6.92\\
++ FDPN & \textbf{66.82} & \textbf{46.85} & \textbf{39.14} & \textbf{17.27} & \textbf{18.84} & \textbf{8.11}\\
+\midrule
+$\Delta$ (pp) & +3.36 & +6.44 & +2.84 & +0.56 & +2.40 & +1.19\\
+\bottomrule
+\end{tabular}
+\end{table*}

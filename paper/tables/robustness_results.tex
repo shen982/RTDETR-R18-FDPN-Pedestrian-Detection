@@ -1,0 +1,16 @@
+\begin{table}[!htbp]
+\centering
+\caption{Penn--Fudan, 30 epochs: means $\pm$ sample standard deviations across three seeds. AP is in percent; parameters refer to the evaluated inference models.}
+\label{tab:robustness}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrr}
+\toprule
+Model & Params (M) & AP$_{50}$ & AP$_{50:95}$\\
+\midrule
+RT-DETR-R18 & 19.873 & 65.59 $\pm$ 2.65 & 41.31 $\pm$ 0.81\\
+CCFF-320 control & 22.029 & 65.71 $\pm$ 5.02 & 41.68 $\pm$ 1.91\\
++ FDPN & 22.236 & 64.17 $\pm$ 2.29 & 42.54 $\pm$ 0.27\\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,118 @@
+{
+  "LICENSES.md": {
+    "bytes": 1917,
+    "sha256": "7c7c83101b07623228aafe822a79307e3d3ddedc783eafa194bc598eef09e1ba"
+  },
+  "evidence/audit_report.json": {
+    "bytes": 8726,
+    "sha256": "beb37006dff4ae421bf92361405efe274f4c7706fb5e6f967d459268bd2b5107"
+  },
+  "evidence/datasets/coco2017/split_manifest.json": {
+    "bytes": 169116,
+    "sha256": "00cac53cbfbc072e8e0391f95aeae66fc6ca36744e23ac385d1bf1fc5d035a3d"
+  },
+  "evidence/datasets/pennfudan/split_manifest.json": {
+    "bytes": 3910,
+    "sha256": "676621fe16b6ddb3f49da77f0c366a2d8aec67abf38e5ab677a2552a3243761e"
+  },
+  "evidence/datasets/voc2007/split_manifest.json": {
+    "bytes": 162757,
+    "sha256": "41b9f9c8ec546fe3d919892f91a25d90a8a606b496349e362720de73969529f9"
+  },
+  "evidence/fdpn_ablation/summary.json": {
+    "bytes": 707,
+    "sha256": "4025c2dee6822213eba1776674d0ca7547c8b46e01ae6414fa926f5f29e4f4ec"
+  },
+  "evidence/public_multidataset_e100/summary.json": {
+    "bytes": 1321,
+    "sha256": "2b0d8a607fa287af22413214e4fa0199cf0dda4831f530e727b7385bac138f23"
+  },
+  "evidence/robustness/publication_statistics.json": {
+    "bytes": 6366,
+    "sha256": "98804834fcfd011148e594c41ff71a15d0137ca0ada011aec899f27274ada154"
+  },
+  "evidence/robustness/summary.json": {
+    "bytes": 2475,
+    "sha256": "584c5c348e055009bb24b76a2b7649681e83b7e5d342c821a3250f4d6e326ea6"
+  },
+  "paper/Makefile": {
+    "bytes": 852,
+    "sha256": "c69869cd518cc3ac159d155fe917ebbdc047d4cdc2633cc672516d3bdff06c9f"
+  },
+  "paper/figures/architecture_visio_revision.pdf": {
+    "bytes": 1681875,
+    "sha256": "c22d78d6970fc0e1d76a41a8ea89781d427d653c0fb699b023b63bfbed31c91f"
+  },
+  "paper/figures/initial_penn_curves_column.pdf": {
+    "bytes": 12599,
+    "sha256": "cc2803c0f4423660178910185faf5053c3743afa4417668ec8f53e6ec4fd9b90"
+  },
+  "paper/figures/robustness_summary.pdf": {
+    "bytes": 14567,
+    "sha256": "a6b1e5574bd7f5a17094f329b9167da5e57e4029dc665ac23269ed1fdc5c0da6"
+  },
+  "paper/main.pdf": {
+    "bytes": 1789984,
+    "sha256": "f42bbc62d68cc6d97629a6402132238361e46dd6e9b3c07fd0b4120f12eba855"
+  },
+  "paper/main.tex": {
+    "bytes": 29944,
+    "sha256": "57025a6436fb196fbcc21b11c56acbb11b19b58a4b73ba635c4cd17d0da98ca2"
+  },
+  "paper/references.bib": {
+    "bytes": 7189,
+    "sha256": "38fcb36c9253d690fc8beaff9abdc0b4eca764fa3852d389a1e1516aaecab72c"
+  },
+  "paper/tables/ablation_discussion.tex": {
+    "bytes": 807,
+    "sha256": "1f7db7eb62a7a5cd2a60d7124248892b3dabcf7650892aeddbeb843700ff4da4"
+  },
+  "paper/tables/ablation_results.tex": {
+    "bytes": 631,
+    "sha256": "b2d507a4f6fa892424fc46bc7af21fc287f9950b1e9779ae9e58ddea3fdde7d4"
+  },
+  "paper/tables/budget_sensitivity.tex": {
+    "bytes": 466,
+    "sha256": "1733640b686eb6c0a35c3f9f70f46a61d6feb529a4a0066b9df511580355f0c9"
+  },
+  "paper/tables/main_results.tex": {
+    "bytes": 967,
+    "sha256": "d5cfde8d5976d1444fe31a2efc03b76498936d92c16eca40d6450e071a562026"
+  },
+  "paper/tables/public_results.tex": {
+    "bytes": 1280,
+    "sha256": "1c256f97abe83272307d08815ae5d6a9bbb36cbdd517a811a08ae80bb6963069"
+  },
+  "paper/tables/public_splits.tex": {
+    "bytes": 378,
+    "sha256": "c706df0d3ab528e92a7697d918950e5c91a55e05c930ac7075918311f20cb9b3"
+  },
+  "paper/tables/repeat_sensitivity.tex": {
+    "bytes": 497,
+    "sha256": "13242a8c3670361ad5f862281e3de126e58c5255ae4bd5172fb560bb2f34cf7f"
+  },
+  "paper/tables/robustness_results.tex": {
+    "bytes": 569,
+    "sha256": "c5b2c2695b6098b971a30eac89a781bccd28376db776adc59d211d396e001142"
+  },
+  "paper/tables/robustness_seed_details.tex": {
+    "bytes": 785,
+    "sha256": "fe8af2facc07ff8c4fa2aac7a58c9cb58dc7c5ce073146de928b58169ccc531d"
+  },
+  "paper/third_party/IEEEtran/IEEEtran/IEEEtran.cls": {
+    "bytes": 281957,
+    "sha256": "da751920a317ed318b7b5cd7fa585a6cc7d28502d457856382e9be24b10a3bd7"
+  },
+  "paper/third_party/IEEEtran/IEEEtran/README": {
+    "bytes": 5465,
+    "sha256": "cc2de809d6e86ab95cd4e88d97b41cb81dd96cf224e6445474aeb7419f4a0462"
+  },
+  "paper/third_party/IEEEtran/IEEEtran/bibtex/IEEEtran.bst": {
+    "bytes": 57748,
+    "sha256": "314f0ece704568faf827011bac498650691b2b5ee06320720830e782416d5a5f"
+  },
+  "weights/ARCHIVES.json": {
+    "bytes": 1367,
+    "sha256": "7191e23962101b09573e0315cc57e222fc27a5ded500978509bbcc17cb8f40bd"
+  }
+}

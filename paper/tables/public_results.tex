@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{Public-subset performance under matched training budgets. P/R and AP are in percent; deltas are percentage points. R18 denotes RT-DETR-R18. Bold marks the higher paired estimate, not statistical significance. P/R use toolkit-selected operating points.}
+\label{tab:public_results}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lllrrrrrr}
+\toprule
+Subset & Epochs & Model & Precision & Recall & mAP$_{50}$ & mAP$_{50:95}$ & $\Delta$AP$_{50}$ & $\Delta$AP$_{50:95}$\\
+\midrule
+VOC-person & 30 & R18 & 13.08 & 17.11 & 8.72 & 3.00 & -- & --\\
+VOC-person & 30 & R18+FDPN & \textbf{22.77} & \textbf{31.58} & \textbf{17.97} & \textbf{6.28} & +9.24 & +3.28\\
+VOC-person & 100 & R18 & \textbf{54.37} & 32.89 & 36.30 & 16.71 & -- & --\\
+VOC-person & 100 & R18+FDPN & 48.85 & \textbf{43.42} & \textbf{39.14} & \textbf{17.27} & +2.84 & +0.56\\
+\midrule
+COCO-person & 30 & R18 & \textbf{11.11} & \textbf{15.49} & \textbf{5.57} & 1.68 & -- & --\\
+COCO-person & 30 & R18+FDPN & 10.62 & 14.48 & 4.96 & \textbf{1.83} & -0.61 & +0.16\\
+COCO-person & 100 & R18 & \textbf{28.46} & 22.22 & 16.44 & 6.92 & -- & --\\
+COCO-person & 100 & R18+FDPN & 26.86 & \textbf{26.26} & \textbf{18.84} & \textbf{8.11} & +2.40 & +1.19\\
+\bottomrule
+\end{tabular}
+\end{table*}

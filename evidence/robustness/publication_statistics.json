@@ -1,0 +1,201 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "run": "penn_baseline_e30_s2026",
+      "variant": "baseline",
+      "seed": 2026,
+      "AP50": 0.6264094306881227,
+      "AP50_95": 0.40487181526169874,
+      "parameters": 19873044,
+      "csv_validation_fitness_peak_epoch": 30
+    },
+    {
+      "run": "penn_fdpn_e30_s2026",
+      "variant": "fdpn",
+      "seed": 2026,
+      "AP50": 0.6252326098855597,
+      "AP50_95": 0.4236465390009383,
+      "parameters": 22236052,
+      "csv_validation_fitness_peak_epoch": 29
+    },
+    {
+      "run": "penn_ccff320_e30_s2026",
+      "variant": "ccff320",
+      "seed": 2026,
+      "AP50": 0.7133307164416163,
+      "AP50_95": 0.435681726882882,
+      "parameters": 22028820,
+      "csv_validation_fitness_peak_epoch": 29
+    },
+    {
+      "run": "penn_ccff320_e30_s2027",
+      "variant": "ccff320",
+      "seed": 2027,
+      "AP50": 0.6167062499587529,
+      "AP50_95": 0.39745193555442576,
+      "parameters": 22028820,
+      "csv_validation_fitness_peak_epoch": 27
+    },
+    {
+      "run": "penn_baseline_e30_s2027",
+      "variant": "baseline",
+      "seed": 2027,
+      "AP50": 0.6776358886780831,
+      "AP50_95": 0.413426622487146,
+      "parameters": 19873044,
+      "csv_validation_fitness_peak_epoch": 29
+    },
+    {
+      "run": "penn_fdpn_e30_s2027",
+      "variant": "fdpn",
+      "seed": 2027,
+      "AP50": 0.6321169634629158,
+      "AP50_95": 0.42400123980023297,
+      "parameters": 22236052,
+      "csv_validation_fitness_peak_epoch": 28
+    },
+    {
+      "run": "penn_fdpn_e30_s2028",
+      "variant": "fdpn",
+      "seed": 2028,
+      "AP50": 0.6678377335057678,
+      "AP50_95": 0.4284322952949015,
+      "parameters": 22236052,
+      "csv_validation_fitness_peak_epoch": 28
+    },
+    {
+      "run": "penn_ccff320_e30_s2028",
+      "variant": "ccff320",
+      "seed": 2028,
+      "AP50": 0.6413645525026666,
+      "AP50_95": 0.41722227268815565,
+      "parameters": 22028820,
+      "csv_validation_fitness_peak_epoch": 26
+    },
+    {
+      "run": "penn_baseline_e30_s2028",
+      "variant": "baseline",
+      "seed": 2028,
+      "AP50": 0.6638042752554749,
+      "AP50_95": 0.4210771572643434,
+      "parameters": 19873044,
+      "csv_validation_fitness_peak_epoch": 29
+    }
+  ],
+  "statistics": {
+    "baseline": {
+      "n": 3,
+      "parameters": 19873044,
+      "AP50": {
+        "mean": 0.6559498648738936,
+        "sample_std": 0.026501062646260315
+      },
+      "AP50_95": {
+        "mean": 0.41312519833772937,
+        "sample_std": 0.00810687484447975
+      }
+    },
+    "ccff320": {
+      "n": 3,
+      "parameters": 22028820,
+      "AP50": {
+        "mean": 0.6571338396343452,
+        "sample_std": 0.05020532534757137
+      },
+      "AP50_95": {
+        "mean": 0.4167853117084878,
+        "sample_std": 0.01911864109783017
+      }
+    },
+    "fdpn": {
+      "n": 3,
+      "parameters": 22236052,
+      "AP50": {
+        "mean": 0.6417291022847478,
+        "sample_std": 0.022871249402272063
+      },
+      "AP50_95": {
+        "mean": 0.42536002469869094,
+        "sample_std": 0.002666568605250986
+      }
+    }
+  },
+  "audit": [
+    {
+      "run": "penn_baseline_e30_s2026",
+      "verified": true,
+      "epochs_verified": 30,
+      "checkpoint_sha256": "5beb2407761988d4ccb4c850e0ffebdc6b5503cbeb01a65992ceee40f27d215e",
+      "test_json_sha256": "07c8c32547c6acf96eeed7af2bdc08b3156631d28601e9526b3538fa5303babf",
+      "csv_validation_fitness_peak_epoch": 30
+    },
+    {
+      "run": "penn_fdpn_e30_s2026",
+      "verified": true,
+      "epochs_verified": 30,
+      "checkpoint_sha256": "1216175cb703d93b9e08cf644852a2509d2c66626ec83ee64edc3c62fe0dfb74",
+      "test_json_sha256": "d0060dd0e0f9ff6bbb58c9c8aec1d19237d21fc0d2908e2cb4ae39551379cf26",
+      "csv_validation_fitness_peak_epoch": 29
+    },
+    {
+      "run": "penn_ccff320_e30_s2026",
+      "verified": true,
+      "epochs_verified": 30,
+      "checkpoint_sha256": "2e37d303ddacf1b061d53c8f4269b4e44196476de77b0b1fafe6c2b1310bc4b2",
+      "test_json_sha256": "66b1065c8e999fabde89fa44aea38fca58d419ac2112dcdd6cefc931624ceb34",
+      "csv_validation_fitness_peak_epoch": 29
+    },
+    {
+      "run": "penn_ccff320_e30_s2027",
+      "verified": true,
+      "epochs_verified": 30,
+      "checkpoint_sha256": "b54539c21090047953f1a080005ef0e8517366b2b0247787ed8b07fd51e8dfb9",
+      "test_json_sha256": "ae0dece3d58c40fce1a73b3e3e8fbf9ebecd94f60af394ef298a9ea4c6396091",
+      "csv_validation_fitness_peak_epoch": 27
+    },
+    {
+      "run": "penn_baseline_e30_s2027",
+      "verified": true,
+      "epochs_verified": 30,
+      "checkpoint_sha256": "f4b14ecd79250f41bddd8b4a1ac733744bf03505115fc46eddcc264fc4995923",
+      "test_json_sha256": "cd50e098072caeb59999363498e2d6996f00eae5c1b9046c018a14109c152da1",
+      "csv_validation_fitness_peak_epoch": 29
+    },
+    {
+      "run": "penn_fdpn_e30_s2027",
+      "verified": true,
+      "epochs_verified": 30,
+      "checkpoint_sha256": "00f12834ca85fb61e7a5b6cc2977459ea61e3a2c6f056151485465ba296fb089",
+      "test_json_sha256": "6d5379dcb6b08557d18d992f2e6c7b6eb49c7c0165989ae8b1ca75be571b7e86",
+      "csv_validation_fitness_peak_epoch": 28
+    },
+    {
+      "run": "penn_fdpn_e30_s2028",
+      "verified": true,
+      "epochs_verified": 30,
+      "checkpoint_sha256": "8d9082b3afd8771bc41a791ba1e8ba227c753fe9257b2a7db6133d806377a81a",
+      "test_json_sha256": "8575817f7ae85166d8ec1f6a1d82252d2372cfd79c376f71c63c02fa087861c1",
+      "csv_validation_fitness_peak_epoch": 28
+    },
+    {
+      "run": "penn_ccff320_e30_s2028",
+      "verified": true,
+      "epochs_verified": 30,
+      "checkpoint_sha256": "2c0e546063399aa345b1289bcead632eb1bcbe74ed717232285f869817b6328b",
+      "test_json_sha256": "de1d4ad40283817df8aa4c0d3f20655f5e8d0a20cc40a18c9179bcfee3fa27d1",
+      "csv_validation_fitness_peak_epoch": 26
+    },
+    {
+      "run": "penn_baseline_e30_s2028",
+      "verified": true,
+      "epochs_verified": 30,
+      "checkpoint_sha256": "43d372a29bf907eb4bde9d94decbad97171ace116e058953b7c457d25541cce8",
+      "test_json_sha256": "db41de689473218a3e5d0881ea64b717411c6ccf626c8b63cd52cdcfd2a57bc5",
+      "csv_validation_fitness_peak_epoch": 29
+    }
+  ],
+  "all_training_preceded_testing": true,
+  "frozen_inputs_verified": 699,
+  "interpretation": "Fixed previously used partition; sample SD describes three seeds, not a confidence interval."
+}

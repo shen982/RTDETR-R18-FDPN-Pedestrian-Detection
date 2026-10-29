@@ -1,0 +1,23 @@
+# Build products and local caches. The reviewed paper/main.pdf is tracked.
+__pycache__/
+*.py[cod]
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+.pytest_cache/
+.venv/
+venv/
+
+# Third-party image archives, run outputs, and model binaries must not enter
+# ordinary Git history. Weight archives are handled separately.
+/data/raw/
+/datasets/
+/reproduction_outputs/
+/runs/
+*.pt
+*.pth
+*.ckpt
+weights_*.zip
+code.zip

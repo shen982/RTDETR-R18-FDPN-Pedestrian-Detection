@@ -1,0 +1,104 @@
+{
+  "complete": true,
+  "raw_results": [
+    {
+      "run": "penn_baseline_e30_s2026",
+      "variant": "baseline",
+      "seed": 2026,
+      "AP50": 0.6264094306881227,
+      "AP50_95": 0.40487181526169874
+    },
+    {
+      "run": "penn_fdpn_e30_s2026",
+      "variant": "fdpn",
+      "seed": 2026,
+      "AP50": 0.6252326098855597,
+      "AP50_95": 0.4236465390009383
+    },
+    {
+      "run": "penn_ccff320_e30_s2026",
+      "variant": "ccff320",
+      "seed": 2026,
+      "AP50": 0.7133307164416163,
+      "AP50_95": 0.435681726882882
+    },
+    {
+      "run": "penn_ccff320_e30_s2027",
+      "variant": "ccff320",
+      "seed": 2027,
+      "AP50": 0.6167062499587529,
+      "AP50_95": 0.39745193555442576
+    },
+    {
+      "run": "penn_baseline_e30_s2027",
+      "variant": "baseline",
+      "seed": 2027,
+      "AP50": 0.6776358886780831,
+      "AP50_95": 0.413426622487146
+    },
+    {
+      "run": "penn_fdpn_e30_s2027",
+      "variant": "fdpn",
+      "seed": 2027,
+      "AP50": 0.6321169634629158,
+      "AP50_95": 0.42400123980023297
+    },
+    {
+      "run": "penn_fdpn_e30_s2028",
+      "variant": "fdpn",
+      "seed": 2028,
+      "AP50": 0.6678377335057678,
+      "AP50_95": 0.4284322952949015
+    },
+    {
+      "run": "penn_ccff320_e30_s2028",
+      "variant": "ccff320",
+      "seed": 2028,
+      "AP50": 0.6413645525026666,
+      "AP50_95": 0.41722227268815565
+    },
+    {
+      "run": "penn_baseline_e30_s2028",
+      "variant": "baseline",
+      "seed": 2028,
+      "AP50": 0.6638042752554749,
+      "AP50_95": 0.4210771572643434
+    }
+  ],
+  "aggregates": [
+    {
+      "variant": "baseline",
+      "completed_seeds": 3,
+      "AP50_95_mean": 0.41312519833772937,
+      "AP50_95_sample_std": 0.00810687484447975,
+      "paired_delta_pp": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "variant": "ccff320",
+      "completed_seeds": 3,
+      "AP50_95_mean": 0.4167853117084878,
+      "AP50_95_sample_std": 0.01911864109783017,
+      "paired_delta_pp": [
+        3.080991162118324,
+        -1.597468693272025,
+        -0.3854884576187767
+      ]
+    },
+    {
+      "variant": "fdpn",
+      "completed_seeds": 3,
+      "AP50_95_mean": 0.42536002469869094,
+      "AP50_95_sample_std": 0.002666568605250986,
+      "paired_delta_pp": [
+        1.8774723739239552,
+        1.0574617313086954,
+        0.7355138030558095
+      ]
+    }
+  ],
+  "interpretation": "Descriptive seed variability; no automatic significance or success claim."
+}

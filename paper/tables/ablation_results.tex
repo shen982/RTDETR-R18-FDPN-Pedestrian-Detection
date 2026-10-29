@@ -1,0 +1,16 @@
+\begin{table}[!t]
+\centering
+\caption{Component ablations on Penn--Fudan, 30 epochs. AP is in percent; $\Delta$ is the change in mAP$_{50:95}$ relative to the full-FDPN control, in percentage points. Channel interfaces are matched; parameter counts differ.}
+\label{tab:ablation}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrr}
+\toprule
+Configuration & Params (M) & mAP$_{50}$ & mAP$_{50:95}$ & $\Delta$ (pp)\\
+\midrule
+FDPN (control) & 22.236 & 65.25 & 44.01 & +0.00\\
+Single $5\times5$ & 21.992 & 59.67 & 38.02 & -6.00\\
+Without refocusing & 21.718 & 64.09 & 44.06 & +0.05\\
+\bottomrule
+\end{tabular}
+\end{table}

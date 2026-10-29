@@ -1,0 +1,24 @@
+\begin{table}[!htbp]
+\centering
+\caption{Seed-wise Penn--Fudan results. AP is in percent; differences are relative to the same-seed original baseline.}
+\label{tab:robustness_seeds}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rlrrr}
+\toprule
+Seed & Model & AP$_{50}$ & AP$_{50:95}$ & $\Delta$AP (pp)\\
+\midrule
+2026 & RT-DETR-R18 & 62.64 & 40.49 & +0.00\\
+2026 & CCFF-320 control & 71.33 & 43.57 & +3.08\\
+2026 & + FDPN & 62.52 & 42.36 & +1.88\\
+\midrule
+2027 & RT-DETR-R18 & 67.76 & 41.34 & +0.00\\
+2027 & CCFF-320 control & 61.67 & 39.75 & -1.60\\
+2027 & + FDPN & 63.21 & 42.40 & +1.06\\
+\midrule
+2028 & RT-DETR-R18 & 66.38 & 42.11 & +0.00\\
+2028 & CCFF-320 control & 64.14 & 41.72 & -0.39\\
+2028 & + FDPN & 66.78 & 42.84 & +0.74\\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,46 @@
+[
+  {
+    "dataset": "VOC2007-person-450",
+    "model": "RT-DETR-R18",
+    "run": "voc2007_person450_baseline_e100_s2026",
+    "precision": 0.5436505299616067,
+    "recall": 0.32894736842105265,
+    "mAP50": 0.3629954208222802,
+    "mAP50_95": 0.16709833150834247,
+    "parameters": 19873044,
+    "inference_ms": 6.516284942626953
+  },
+  {
+    "dataset": "VOC2007-person-450",
+    "model": "FDPN",
+    "run": "voc2007_person450_fdpn_e100_s2026",
+    "precision": 0.488529259246091,
+    "recall": 0.4342105263157895,
+    "mAP50": 0.39135579462261816,
+    "mAP50_95": 0.17265377185706757,
+    "parameters": 22236052,
+    "inference_ms": 7.916438579559325
+  },
+  {
+    "dataset": "COCO2017-person-450",
+    "model": "RT-DETR-R18",
+    "run": "coco2017_person450_baseline_e100_s2026",
+    "precision": 0.2845594792871372,
+    "recall": 0.2222222222222222,
+    "mAP50": 0.16441965533104763,
+    "mAP50_95": 0.06922694617675243,
+    "parameters": 19873044,
+    "inference_ms": 5.868349075317383
+  },
+  {
+    "dataset": "COCO2017-person-450",
+    "model": "FDPN",
+    "run": "coco2017_person450_fdpn_e100_s2026",
+    "precision": 0.26857270000122585,
+    "recall": 0.26262626262626265,
+    "mAP50": 0.1883842905959394,
+    "mAP50_95": 0.08114365437349641,
+    "parameters": 22236052,
+    "inference_ms": 6.863715648651123
+  }
+]

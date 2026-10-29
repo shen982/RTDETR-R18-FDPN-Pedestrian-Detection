@@ -1,0 +1,29 @@
+[
+  {
+    "run": "ablation_full_fdpn_e30_s2026",
+    "variant": "Full FDPN (fresh control)",
+    "P": 0.6109137930608971,
+    "R": 0.625,
+    "AP50": 0.6524503731402714,
+    "AP5095": 0.4401448201537198,
+    "parameters": 22236052
+  },
+  {
+    "run": "ablation_single_kernel_e30_s2026",
+    "variant": "DW 5x5 only",
+    "P": 0.655885495568949,
+    "R": 0.609375,
+    "AP50": 0.5966934720886446,
+    "AP5095": 0.3801799533616942,
+    "parameters": 21992212
+  },
+  {
+    "run": "ablation_single_focus_e30_s2026",
+    "variant": "No second focus (width-matched)",
+    "P": 0.5643845342263131,
+    "R": 0.59375,
+    "AP50": 0.6409031047357882,
+    "AP5095": 0.440634844193576,
+    "parameters": 21717844
+  }
+]
