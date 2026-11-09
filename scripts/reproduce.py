@@ -6,6 +6,7 @@ import argparse
 import csv
 from datetime import datetime, timezone
 import hashlib
+import http.client
 import json
 import os
 from pathlib import Path, PurePosixPath
@@ -13,6 +14,8 @@ import shutil
 import statistics
 import subprocess
 import sys
+import time
+import urllib.error
 import urllib.request
 import zipfile
 
@@ -68,6 +71,44 @@ def validate_members(bundle):
         names.add(item.filename)
 
 
+def download(asset, path, attempts=8):
+    """Resume interrupted transfers; install only a size-and-hash verified file."""
+    temporary = path.with_suffix(path.suffix + ".part")
+    for attempt in range(attempts):
+        try:
+            offset = temporary.stat().st_size if temporary.exists() else 0
+            if offset > asset["bytes"]:
+                temporary.unlink()
+                offset = 0
+            if offset < asset["bytes"]:
+                headers = {"User-Agent": "RTDETR-course-reproduction"}
+                if offset:
+                    headers["Range"] = f"bytes={offset}-"
+                request = urllib.request.Request(asset["url"], headers=headers)
+                with urllib.request.urlopen(request, timeout=120) as incoming:
+                    if incoming.status == 206:
+                        if not incoming.headers.get("Content-Range", "").startswith(f"bytes {offset}-"):
+                            raise RuntimeError("Unexpected download byte range")
+                    elif incoming.status == 200:
+                        offset = 0  # Servers without Range support restart safely.
+                    else:
+                        raise RuntimeError("Unexpected download HTTP status")
+                    with temporary.open("ab" if offset else "wb") as outgoing:
+                        shutil.copyfileobj(incoming, outgoing, 1024 * 1024)
+            if temporary.stat().st_size == asset["bytes"]:
+                if sha(temporary) == asset["sha256"]:
+                    os.replace(temporary, path)
+                    return
+                temporary.unlink()  # Never append to a complete corrupt file.
+                raise RuntimeError("Downloaded asset failed SHA-256")
+            raise RuntimeError("Download interrupted before the expected byte count")
+        except (OSError, urllib.error.URLError, http.client.IncompleteRead, RuntimeError) as error:
+            if attempt + 1 == attempts:
+                raise RuntimeError("Unable to download verified asset: " + asset["file"]) from error
+            print(f"Retrying {asset['file']} ({attempt + 2}/{attempts}): {error}", flush=True)
+            time.sleep(min(2 ** attempt, 10))
+
+
 def prepare(args, runs):
     downloads = args.workspace / "downloads"
     downloads.mkdir(parents=True, exist_ok=True)
@@ -76,14 +117,8 @@ def prepare(args, runs):
             continue
         path = downloads / asset["file"]
         if not path.is_file() or path.stat().st_size != asset["bytes"] or sha(path) != asset["sha256"]:
-            temporary = path.with_suffix(path.suffix + ".part")
             print("Downloading", asset["file"], flush=True)
-            request = urllib.request.Request(asset["url"], headers={"User-Agent": "RTDETR-course-reproduction"})
-            with urllib.request.urlopen(request, timeout=120) as incoming, temporary.open("wb") as outgoing:
-                shutil.copyfileobj(incoming, outgoing, 8 * 1024 * 1024)
-            if temporary.stat().st_size != asset["bytes"] or sha(temporary) != asset["sha256"]:
-                raise RuntimeError("Downloaded asset failed SHA-256: " + asset["file"])
-            os.replace(temporary, path)
+            download(asset, path)
         marker = downloads / (asset["file"] + ".extracted.sha256")
         if marker.is_file() and marker.read_text().strip() == asset["sha256"]:
             continue

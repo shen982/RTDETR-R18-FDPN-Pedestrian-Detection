@@ -38,7 +38,7 @@
     "fdpn_epochs": 30,
     "fdpn_completed": true
   },
-  "automated_checks": "11 passed (model interfaces, archive paths, source corruption, run selection, output protection)",
+  "automated_checks": "13 passed: model interfaces, archive paths/symlinks, source corruption, run selection, output protection, HTTP interruption/resume, rejection of corrupt download",
   "assets": [
     {
       "file": "public_runtime_code_v5.zip",

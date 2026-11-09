@@ -26,7 +26,7 @@ python scripts/reproduce.py prepare --suite all
 python scripts/reproduce.py verify --suite all
 ```
 
-The program downloads nine SHA-256-verified assets and safely extracts them under `reproduction_workspace/snapshot/`. It checks every frozen source/data file and selected checkpoint. Default suite `primary` selects the nine three-seed Penn--Fudan runs; `quick` selects the two historical initial runs. Use `--workspace /path/on/a/large/disk` consistently to relocate all downloads, data, weights and results.
+The program downloads nine SHA-256-verified assets and safely extracts them under `reproduction_workspace/snapshot/`. Interrupted transfers retry automatically and resume when the server supports byte ranges; a complete file is installed only after size and SHA-256 checks pass. It checks every frozen source/data file and selected checkpoint. Default suite `primary` selects the nine three-seed Penn--Fudan runs; `quick` selects the two historical initial runs. Use `--workspace /path/on/a/large/disk` consistently to relocate all downloads, data, weights and results.
 
 All URLs, byte counts and hashes are in [ASSETS.json](../reproduction/ASSETS.json). [RUNS.json](../reproduction/RUNS.json) maps each run to its exact configuration, checkpoint, seed, budget and metrics. Public checkpoints preserve original tensor bytes but redact machine paths; their hashes intentionally differ from the original variants in `weights/ARCHIVES.json`. If an extracted file was modified, use a fresh workspace to restore the released inputs.
 
