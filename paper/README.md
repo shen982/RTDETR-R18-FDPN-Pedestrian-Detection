@@ -8,4 +8,4 @@ From this directory, install Tectonic or an IEEEtran-compatible LaTeX toolchain,
 make
 ```
 
-The repository does not bundle the platform-specific TeX binary or font cache. Rebuilding the PDF does not train or evaluate a detector. The first-page footer includes a clickable GitHub link. The [reproduction guide](../docs/REPRODUCTION.md) covers all exact datasets, 22 selected weights, source, evaluation and retraining. See also the [repository README](../README.md) and [provenance notes](../LICENSES.md).
+The repository does not bundle the platform-specific TeX binary or font cache. Rebuilding the PDF does not train or evaluate a detector. The first-page footer includes clickable GitHub and reproduction-guide links, with a brief note explaining anonymous artifact downloads and evaluation of saved weights without retraining. The [reproduction guide](../docs/REPRODUCTION.md) covers all exact datasets, 22 selected weights, source, evaluation and retraining. See also the [repository README](../README.md) and [provenance notes](../LICENSES.md).

@@ -712,8 +712,8 @@
     "sha256": "c69869cd518cc3ac159d155fe917ebbdc047d4cdc2633cc672516d3bdff06c9f"
   },
   "paper/README.md": {
-    "bytes": 800,
-    "sha256": "0c0b81ff2c4e1f816d6fc51eebbb21846df6ed93c6170c30a6cf17803d6072fc"
+    "bytes": 932,
+    "sha256": "2690a400d3d8a63900610689d07133c5f9307a1a1ac1d90cedb0fb03960e3c9c"
   },
   "paper/figures/architecture_visio_revision.pdf": {
     "bytes": 1681875,
@@ -728,12 +728,12 @@
     "sha256": "a6b1e5574bd7f5a17094f329b9167da5e57e4029dc665ac23269ed1fdc5c0da6"
   },
   "paper/main.pdf": {
-    "bytes": 1791944,
-    "sha256": "3fe5aba95f3eb1c4d51123220e6becccca7ec80749ba84d78bc1748f656d62ec"
+    "bytes": 1792232,
+    "sha256": "71e96da8056df5af804c5e7bc6bd9f9450939265340e2a7efa51ac2cbf9c6616"
   },
   "paper/main.tex": {
-    "bytes": 31526,
-    "sha256": "ceb7cd03b5b97402a12fda728d6b5db169533a4ffe78a68917c04ac7fcd63787"
+    "bytes": 31874,
+    "sha256": "8fe38e125366bb624dbc92c5fcf35080eb679306e845ae7435eec872d6ee987c"
   },
   "paper/references.bib": {
     "bytes": 7189,
