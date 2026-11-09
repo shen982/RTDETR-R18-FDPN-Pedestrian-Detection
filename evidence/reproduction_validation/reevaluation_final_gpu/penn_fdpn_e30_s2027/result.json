@@ -1,0 +1,48 @@
+{
+  "run": "penn_fdpn_e30_s2027",
+  "action": "evaluate",
+  "device": "0",
+  "python": "3.11.14",
+  "torch": "2.7.1+cu126",
+  "metric_split": "test",
+  "archived_checkpoint": true,
+  "cuda": "12.6",
+  "metrics": {
+    "metrics/precision(B)": 0.7669899505726449,
+    "metrics/recall(B)": 0.578125,
+    "metrics/mAP50(B)": 0.6321169634629158,
+    "metrics/mAP50-95(B)": 0.42400123980023297,
+    "fitness": 0.44481281216650126
+  },
+  "comparison": {
+    "metrics/precision(B)": {
+      "archived": 0.7669899505726449,
+      "reproduced": 0.7669899505726449,
+      "absolute_difference": 0.0
+    },
+    "metrics/recall(B)": {
+      "archived": 0.578125,
+      "reproduced": 0.578125,
+      "absolute_difference": 0.0
+    },
+    "metrics/mAP50(B)": {
+      "archived": 0.6321169634629158,
+      "reproduced": 0.6321169634629158,
+      "absolute_difference": 0.0
+    },
+    "metrics/mAP50-95(B)": {
+      "archived": 0.42400123980023297,
+      "reproduced": 0.42400123980023297,
+      "absolute_difference": 0.0
+    },
+    "fitness": {
+      "archived": 0.44481281216650126,
+      "reproduced": 0.44481281216650126,
+      "absolute_difference": 0.0
+    }
+  },
+  "checkpoint_sha256": "2e34dacc1d72b6fc6763a2ce7e5fa5cb7d28c7027a4e13952547433d7c0181b9",
+  "all_metric_differences_below_1e-6": true,
+  "source_module": "vendor/RTDETR-main/ultralytics",
+  "seed": 2027
+}

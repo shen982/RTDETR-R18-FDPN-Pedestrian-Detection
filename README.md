@@ -4,36 +4,43 @@ Jiaxu Chen · Department of Automation, North China Electric Power University, B
 
 Contact: 17736460722@163.com
 
-This repository accompanies an IEEEtran-style course manuscript on the integration and evaluation of an existing Focusing Diffusion Pyramid Network (FDPN) configuration in RT-DETR-R18. The FDPN topology is attributed to its source bundle and related focus--diffusion work; it is **not claimed as a new invention by this paper**.
+Read the **[English paper](paper/main.pdf)**. This course project evaluates an existing FDPN configuration in RT-DETR-R18, with attribution to its source bundle and related focus--diffusion research. Its contributions are controlled evaluation and component analysis.
 
-## Paper and results
+## Main findings
 
-Read [the manuscript](paper/main.pdf) first. The primary comparison uses three Penn--Fudan training seeds and reports mean held-out AP, not the best seed.
-
-| Dataset and protocol | Metric | RT-DETR-R18 | FDPN adaptation | Difference |
+| Dataset and protocol | Metric (%) | RT-DETR-R18 | FDPN | Difference (pp) |
 | --- | --- | ---: | ---: | ---: |
-| Penn--Fudan, 30 epochs, 3 seeds | AP50:95 | 41.31 | 42.54 | +1.22 percentage points |
-| Penn--Fudan, 30 epochs, 3 seeds | AP50 | 65.59 | 64.17 | −1.42 percentage points |
-| VOC2007-person subset, 100 epochs | AP50:95 | 16.71 | 17.27 | +0.56 percentage points |
-| COCO2017-person subset, 100 epochs | AP50:95 | 6.92 | 8.11 | +1.19 percentage points |
+| Penn--Fudan, 30 epochs, 3 seeds | AP50:95 | 41.31 | 42.54 | +1.22 |
+| Penn--Fudan, 30 epochs, 3 seeds | AP50 | 65.59 | 64.17 | −1.42 |
+| VOC2007-person450, 100 epochs | AP50:95 | 16.71 | 17.27 | +0.56 |
+| COCO2017-person450, 100 epochs | AP50:95 | 6.92 | 8.11 | +1.19 |
 
-AP values are percentages. VOC and COCO rows are exploratory fixed-subset, single-seed comparisons, not full official-benchmark results. The 6.44-point initial Penn--Fudan single-run gain is supplementary and is not substituted for the three-seed mean. FDPN raises the evaluated model size from 19.87 M to 22.24 M parameters (about 11.9%). The observed benefit is metric- and setting-dependent.
+Differences use unrounded values. FDPN exceeds the near-parameter-matched CCFF-320 control by 0.86 pp AP50:95 and adds 11.9% inference parameters over the baseline. VOC/COCO and ablation results are exploratory single-seed experiments on fixed person-only subsets. The paper discusses metric trade-offs, seed variability, test reuse and the limits of capacity controls.
 
-## Repository guide
+## Reproduce
 
-- [`paper/`](paper/README.md): the final English manuscript, LaTeX, figures, tables, and bibliography.
-- [`src/`](src/README.md) and [`configs/`](configs/README.md): attributed FDPN operator extraction and the exact baseline, adaptation, control, and ablation model graphs.
-- [`scripts/`](scripts/README.md) and [`tests/`](tests/test_fdpn_shapes.py): reproduction entry points and CPU-only module-interface checks.
-- [`artifacts/public_runtime_code_v4.zip`](artifacts/README.md): path-safe full runtime **source** archive with a checkpoint manifest matched to the separately prepared public weight archives; no data images or checkpoints.
-- [`evidence/`](evidence/README.md): public-ready aggregate statistics, subset manifests, and checksums. These summaries do not replace the complete local submission archive.
-- [`docs/`](docs/REPRODUCTION.md): reproduction boundaries, sources, and required local archives.
-- [`weights/`](weights/README.md): original and public-variant integrity manifests plus a release guide; no model binary is tracked in Git.
-- [`LICENSES.md`](LICENSES.md): third-party attribution and redistribution boundaries.
+Follow **[the installation and reproduction guide](docs/REPRODUCTION.md)** for Python 3.11/Linux and pinned dependencies. Then:
 
-## Release status and reproducibility
+```bash
+python scripts/reproduce.py prepare --suite all
+python scripts/reproduce.py evaluate --suite all --device 0 --output reproduced_all
+```
 
-The paper, selected public-safe summaries, core FDPN extraction, model configurations, and selected reproduction scripts are available here. A curated runtime source ZIP is also provided under `artifacts/`; it omits machine-specific raw records and is not a complete software environment. The path-redacted checkpoint archives are publicly available in the [v1.0.0 reproducibility release](https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/tag/v1.0.0); verify downloaded files against [`weights/PUBLIC_ARCHIVES.json`](weights/PUBLIC_ARCHIVES.json). The maintainer has stated authorization to redistribute the supplied FDPN module; the original topology remains attributed to its source bundle.
+The program downloads and checks the full runtime, all **1,070 exact study images with labels**, and **22 selected checkpoints**. It evaluates the test splits in fresh output directories, compares metrics with archived evidence, and summarizes three-seed results. CPU evaluation uses `--device cpu`. Retraining commands are documented.
 
-Penn--Fudan, VOC2007, and COCO2017 images are not redistributed. The three-seed sample is small, the Penn--Fudan test partition was reused during exploration, and a near-parameter-matched widened-neck control cannot isolate every capacity effect. Read the manuscript's limitations alongside the positive AP50:95 results.
+[Executed validation](evidence/reproduction_validation/README.md): all 22 GPU evaluations exactly match their archived metrics; a clean CPU installation runs both architectures; baseline and FDPN each complete a 30-epoch training check. CPU metrics and new training trajectories can differ from the historical GPU records.
 
-For a local course submission, use the accompanying verified `code.zip` and original `weights_*.zip` archives plus their SHA-256 manifest, or use the public release assets for an independent checkout. New runs should use fresh output names and never overwrite the archived records. See [reproduction notes](docs/REPRODUCTION.md).
+## Files and downloads
+
+| Material | Location |
+| --- | --- |
+| English PDF, LaTeX, figures, tables and bibliography | [paper/](paper/) |
+| Runtime v5 and three exact dataset ZIPs | [v1.1.0 assets](https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/tag/v1.1.0) |
+| All five weight archives, 22 checkpoints | [v1.0.0 assets](https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/tag/v1.0.0) |
+| Every asset URL, byte count and SHA-256 | [reproduction/ASSETS.json](reproduction/ASSETS.json) |
+| Run/configuration/data/weight/metric mapping | [reproduction/RUNS.json](reproduction/RUNS.json) |
+| Complete training curves and held-out records | [evidence/runs/](evidence/runs/) |
+| FDPN extraction and exact model YAMLs | [src/](src/), [configs/](configs/) |
+| Attribution and runtime/dataset terms | [LICENSES.md](LICENSES.md) |
+
+Weights download separately and are not embedded in the PDF or supplementary submission ZIP. Dataset images retain their original rights; the archives include provenance and COCO per-image attribution. Public checkpoints redact machine paths while preserving tensor bytes; use the public hashes.

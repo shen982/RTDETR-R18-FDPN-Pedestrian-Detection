@@ -1,0 +1,116 @@
+{
+  "date": "2026-11-09",
+  "source": "Fresh extraction of exact release archives; separately installed research Python environment for GPU tests",
+  "frozen_source_and_data_files": 4486,
+  "images": 1070,
+  "archived_runs": 22,
+  "gpu": "NVIDIA GeForce RTX 3090",
+  "python": "3.11.14",
+  "torch": "2.7.1+cu126",
+  "gpu_evaluation": {
+    "runs": 22,
+    "all_metrics_exactly_equal": true,
+    "max_absolute_metric_difference": 0.0
+  },
+  "cpu_evaluation": {
+    "runs": 2,
+    "completed": true,
+    "exact_equality": false,
+    "note": "CPU and GPU predictions produce small AP differences and can change precision/recall operating points.",
+    "clean_environment_runs": 2,
+    "AP_differences_percentage_points": {
+      "baseline_e30": {
+        "metrics/mAP50(B)": 0.05634518704631386,
+        "metrics/mAP50-95(B)": 0.018001097715297787
+      },
+      "fdpn_e30": {
+        "metrics/mAP50(B)": 0.010394991681950128,
+        "metrics/mAP50-95(B)": 0.007003133452976318
+      }
+    }
+  },
+  "training_validation": {
+    "baseline_epochs": 30,
+    "completed": true,
+    "historical_argument_comparison": "All effective numerical/training arguments equal; only paths, output names, overwrite protection and device representation differ.",
+    "new_checkpoint_test_evaluation_completed": true,
+    "new_result_used_in_paper": false,
+    "fdpn_epochs": 30,
+    "fdpn_completed": true
+  },
+  "automated_checks": "11 passed (model interfaces, archive paths, source corruption, run selection, output protection)",
+  "assets": [
+    {
+      "file": "public_runtime_code_v5.zip",
+      "bytes": 9398693,
+      "sha256": "761695e5f647628b62ed2bc2b502640799ab562609cf8e0187d83a3ac41b957f",
+      "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.1.0/public_runtime_code_v5.zip",
+      "kind": "runtime"
+    },
+    {
+      "file": "dataset_pennfudan_yolo.zip",
+      "bytes": 53275097,
+      "sha256": "a73a78c47e971fd13a674ba43a67e6156b67773c5780a330c15355474a372726",
+      "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.1.0/dataset_pennfudan_yolo.zip",
+      "kind": "dataset",
+      "dataset": "pennfudan_yolo"
+    },
+    {
+      "file": "dataset_voc2007_person450.zip",
+      "bytes": 40349981,
+      "sha256": "5985a9f8984f70a6d8f487592e6bcfcc8fb6c70a2fb2584209688cedb240482c",
+      "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.1.0/dataset_voc2007_person450.zip",
+      "kind": "dataset",
+      "dataset": "voc2007_person450"
+    },
+    {
+      "file": "dataset_coco2017_person450.zip",
+      "bytes": 72851770,
+      "sha256": "d44b9beb4f07b6677473b005a70102c9669148f45de1107648e365f065e9c0cc",
+      "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.1.0/dataset_coco2017_person450.zip",
+      "kind": "dataset",
+      "dataset": "coco2017_person450"
+    },
+    {
+      "file": "public_weights_initial_penn.zip",
+      "bytes": 156967156,
+      "sha256": "0888077e3f6c6ebb6d6b8f5ce9627d7daaa5fce0d23216fd237de0dfb060c641",
+      "kind": "weights",
+      "group": "initial_penn",
+      "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.0.0/public_weights_initial_penn.zip"
+    },
+    {
+      "file": "public_weights_public_e30.zip",
+      "bytes": 313898734,
+      "sha256": "e4413760d30076f16744392cd9aaa03cf84081a41d07288d59b8e7027d27db96",
+      "kind": "weights",
+      "group": "public_e30",
+      "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.0.0/public_weights_public_e30.zip"
+    },
+    {
+      "file": "public_weights_public_e100.zip",
+      "bytes": 314968129,
+      "sha256": "356c104b7d373cb8f50e1a36f734823cfb6cdd235efbd60ed4ae3d50f911d23b",
+      "kind": "weights",
+      "group": "public_e100",
+      "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.0.0/public_weights_public_e100.zip"
+    },
+    {
+      "file": "public_weights_ablation.zip",
+      "bytes": 245742964,
+      "sha256": "5a2f18399d788b87e307ef578c9c180d375d22bef5642e74c017b70bc4d11e93",
+      "kind": "weights",
+      "group": "ablation",
+      "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.0.0/public_weights_ablation.zip"
+    },
+    {
+      "file": "public_weights_robustness.zip",
+      "bytes": 718220237,
+      "sha256": "9b367dec998240e5f115b4dfe778a5a222b95aea73b157680a20919ad1a3cad2",
+      "kind": "weights",
+      "group": "robustness",
+      "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.0.0/public_weights_robustness.zip"
+    }
+  ],
+  "fresh_dependency_installation": "Completed in a fresh Python 3.11 venv; torch 2.7.1+cpu, torchvision 0.22.1+cpu and requirements-reproduce.txt. Baseline and FDPN test evaluation both completed."
+}

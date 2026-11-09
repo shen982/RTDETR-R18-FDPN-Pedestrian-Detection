@@ -20,6 +20,12 @@
 \newcommand{\mapcoco}{mAP$_{50:95}$}
 \newcommand{\method}{FDPN}
 \newcommand{\projectrepository}{\url{https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection}}
+\makeatletter
+\def\ps@projectfirst{%
+  \def\@oddfoot{\hfil\footnotesize\textbf{GitHub: }\projectrepository\hfil}%
+  \let\@evenfoot\@oddfoot}
+\makeatother
+\setlength{\footskip}{22pt}
 
 \title{Evaluating Focus--Diffusion Feature Fusion\\for Data-Limited Pedestrian Detection}
 
@@ -31,6 +37,7 @@
 \begin{document}
 \raggedbottom
 \maketitle
+\thispagestyle{projectfirst}
 
 \begin{abstract}
 With limited pedestrian annotations, cross-scale fusion must reconcile spatial detail and semantic context, yet the benefit of increasing fusion capacity and repeating aggregation remains uncertain. We examine an existing Focusing Diffusion Pyramid Network (FDPN) configuration within RT-DETR-R18. Its neck aligns three feature levels, aggregates spatial context with parallel depthwise kernels, and redistributes the representation across detector scales. Under matched training protocols, we compare this configuration with the original fusion path and a near-parameter-matched widened-neck control, then assess component sensitivity. On Penn--Fudan, three-seed mean AP over IoU thresholds 0.50--0.95 improves by 1.22 and 0.86 percentage points over the two controls, respectively. Mean AP at IoU 0.50 falls by 1.42 points, while inference parameters increase by 11.9\%. Exploratory 100-epoch comparisons on fixed VOC2007-person and COCO2017-person subsets yield AP gains of 0.56 and 1.19 points. A single-seed ablation favors the complete multi-kernel configuration over a single $5\times5$ kernel. Refocusing yields no observed gain in AP over IoU 0.50--0.95, but improves AP at IoU 0.50. Thus, the observed benefit depends on the metric and evaluation setting; the ablation motivates, but does not establish the superiority of, a simpler fusion path.
@@ -115,7 +122,7 @@ Z_4^{(2)}=\Phi_2\!\left(\operatorname{Align}
 A final stride-2 branch from $Z_4^{(2)}$ is concatenated with both $D_5$ and $Z_5^{(1)}$; the upsampling branch is concatenated with both $U_3$ and $Z_3^{(1)}$. RepC3 refines the two three-input concatenations into $O_5$ and $O_3$, while $O_4=Z_4^{(2)}$. Thus, the final outputs retain the direct first-stage redistribution paths as well as the refined streams. The hypothesis is that direct multi-level interaction and broad contextual aggregation benefit pedestrian detection under limited annotations. Section~IV examines the complete configuration and the sensitivity to repeated focusing separately.
 
 \section{Experiments}
-We evaluate whether the existing fusion configuration improves detection beyond a widened conventional neck, how its effect varies with data and optimization budget, and whether both aggregation stages are supported by component evidence.
+The experiments address three questions: (1) does FDPN improve detection beyond the original and a widened conventional neck; (2) does the effect persist across data sources and training budgets; and (3) do the multi-kernel configuration and second focusing stage each justify their added complexity? The repeated-run comparison addresses the first question, the public-subset extension addresses the second, and the component ablations address the third.
 
 \begin{figure*}[t]
     \centering
@@ -181,13 +188,15 @@ The component evidence favors retaining broad contextual aggregation more clearl
 
 Together, the repeated-run and budget comparisons qualify the original design intuition. Direct alignment with broad contextual aggregation is a plausible way to improve cross-threshold AP in this detector, but the effect is smaller than the initial result suggests, incurs additional computation, and does not consistently improve \mapfifty{}. Neither the aggregate metrics nor the illustrative predictions establish that the gain arises specifically from small pedestrians, occlusion handling, or improved spatial detail.
 
+These results support a conditional design decision. FDPN improves \mapcoco{} over the baseline in all three paired Penn--Fudan seeds, but exceeds CCFF-320 in only two; the mean advantage alone does not establish dominance. For an application prioritizing AP at IoU 0.50 or limited computation, the original neck remains a credible choice. For cross-threshold AP, the tested FDPN configuration warrants further evaluation. The projection-based single-stage alternative is a candidate for reducing cost, with its AP trade-off to be checked across seeds before adoption.
+
 The conclusions remain conditional on the evaluation protocol. Public-subset and component comparisons are single-seed; the historical full-model repeat also differs from the initial run by 2.84 points in \mapcoco{}. The widened control narrows the parameter gap but does not match FLOPs, latency, or representation width. Dataset exclusions, exploratory test reuse, small test partitions, and the absence of size- or occlusion-stratified evaluation further limit generalization. Broader multi-seed evaluation on fresh held-out data is required to assess robustness.
 
 \FloatBarrier
 \section{Conclusion}
 Reproducing the supplied FDPN-equipped RT-DETR-R18 configuration reveals a conditional benefit for data-limited pedestrian detection: three-seed Penn--Fudan results improve mean \mapcoco{} by 1.22 points over the baseline and 0.86 points over a near-parameter-matched control, but reduce mean \mapfifty{} and increase computational cost. Exploratory public-subset comparisons further show that the effect depends on the dataset and training budget. The full multi-kernel configuration performed better in the tested single-seed ablation, although kernel diversity, receptive-field extent, and capacity remain entangled. A second focusing stage provides no observed additional \mapcoco{} gain, but favors \mapfifty{}. The resulting design direction is therefore selective rather than additive: retain effective cross-scale contextualization, investigate a single-stage alternative, and assess its metric-dependent trade-off with broader seed coverage, resource-aware controls, and fresh held-out data.
 
-\noindent\textbf{Code and model availability:} \projectrepository. The source and path-redacted checkpoint archives are released at \url{https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/tag/v1.0.0}; original machine-specific records remain in the local submission package. Dataset images are obtained from their original providers.
+\noindent\textbf{Reproduction artifacts:} The GitHub repository linked on the first page provides the attributed runtime source, all 1,070 study images with labels and frozen splits, 22 selected checkpoints, exact configurations, and complete training curves and test records. Its guide maps every run to its data and weights and provides separate commands for checkpoint evaluation and retraining. Public checkpoint archives redact machine paths while preserving tensor bytes; SHA-256 manifests authenticate all downloads. Fresh extraction and RTX 3090 evaluation of all 22 checkpoints reproduce the archived metrics within $10^{-6}$ on the raw metric scale. This verifies checkpoint evaluation, not identical retraining trajectories or independent generalization.
 
 \section{Acknowledgment}
 The author thanks the course instructor for guidance on visual representation and experimental evaluation, and acknowledges the open-source software maintainers and the provider of the attributed module implementation.

@@ -1,7 +1,8 @@
-# Reproduction entry points
+# Reproduction programs
 
-- `submission_reproduce.py` checks a trusted local checkpoint or launches an explicit new train/test run inside the **curated runtime source bundle** plus a compatible environment. Its read-only `check` action does not import Torch or allocate a GPU.
-- `prepare_pennfudan.py` converts an official Penn--Fudan archive into the fixed detection split.
-- `prepare_public_person_subsets.py` materializes the fixed VOC2007-person and COCO2017-person subsets from their original providers.
+Start with [docs/REPRODUCTION.md](../docs/REPRODUCTION.md).
 
-These scripts are published for inspection and audit. They are not advertised as a one-command reproduction from this repository alone: the full runtime, original dataset images, and trusted checkpoints are separate inputs. See [reproduction notes](../docs/REPRODUCTION.md).
+- `reproduce.py`: download, verify, evaluate all 22 runs, aggregate three-seed results, or retrain the exact selected protocol.
+- `evaluate_archived.py`: worker executed from the extracted frozen snapshot; uses local source, exact configuration and test split.
+- `prepare_pennfudan.py` and `prepare_public_person_subsets.py`: historical source-data preparation/provenance. Prepared exact subsets are available in v1.1.0, so running these is unnecessary for checkpoint evaluation.
+- `submission_reproduce.py`: legacy v1.0.0 entrypoint. Use the new workflow above for a complete independent reproduction.

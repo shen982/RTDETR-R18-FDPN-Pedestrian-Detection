@@ -1,11 +1,9 @@
-# Public-safe experiment summaries
+# Experimental evidence
 
-This directory contains selected machine-readable statistics and dataset split manifests from the local archive. The original raw run JSON, full configuration snapshots, curves, and checkpoint mapping remain in the local course-submission package. Those raw files can contain machine-specific absolute paths and have not been copied wholesale into this public repository.
+`runs/<run>/` contains the held-out test record, full epoch-by-epoch results.csv, effective training arguments and available experiment metadata/completion records for all 22 runs. The run names match [RUNS.json](../reproduction/RUNS.json).
 
-- `audit_report.json`: summary checks for the reported experiments.
-- `robustness/publication_statistics.json`: three-seed Penn--Fudan values, means, sample standard deviations, and checkpoint/test hashes.
-- `public_multidataset_e100/summary.json`: the fixed-subset 100-epoch comparison.
-- `fdpn_ablation/summary.json`: component-sensitivity summary.
-- `datasets/*/split_manifest.json`: split definitions, without original images.
+Machine-specific paths are redacted. [RUN_RECORDS.json](RUN_RECORDS.json) records the original-source hash, public-file hash and whether redaction changed each file. Numerical results are preserved.
 
-The values in the paper are traceable to the archived held-out test records and checkpoint SHA-256 hashes in the local submission package; the public checkpoint variants and their hashes are available in the [v1.0.0 reproducibility release](https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/tag/v1.0.0). This public subset is an audit aid, not a claim that dataset images or a preconfigured environment are redistributed.
+The existing aggregate summaries and exact split manifests support the paper's tables. Principal evidence is the three-seed Penn--Fudan comparison; historical initial, public-subset and ablation experiments must not be pooled as additional seeds.
+
+Fresh checkpoint-evaluation outputs are recorded separately from the historical evidence. Read [the reproduction guide](../docs/REPRODUCTION.md) for scope and limitations.

@@ -1,0 +1,22 @@
+{
+  "run": "penn_baseline_e30_s2026",
+  "action": "train",
+  "device": "0",
+  "python": "3.11.14",
+  "torch": "2.7.1+cu126",
+  "metric_split": "validation",
+  "archived_checkpoint": false,
+  "cuda": "12.6",
+  "metrics": {
+    "metrics/precision(B)": 0.7251570159615287,
+    "metrics/recall(B)": 0.5538461538461539,
+    "metrics/mAP50(B)": 0.6608442859627023,
+    "metrics/mAP50-95(B)": 0.4369690451967112,
+    "fitness": 0.4593565692733103
+  },
+  "comparison": {},
+  "checkpoint_sha256": null,
+  "all_metric_differences_below_1e-6": null,
+  "source_module": "vendor/RTDETR-main/ultralytics",
+  "seed": 2026
+}

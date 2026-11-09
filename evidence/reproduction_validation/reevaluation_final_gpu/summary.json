@@ -1,0 +1,36 @@
+{
+  "runs": 22,
+  "primary_three_seed_statistics": {
+    "baseline": {
+      "metrics/mAP50(B)": {
+        "mean_percent": 65.59498648738936,
+        "sample_std_percent": 2.6501062646260314
+      },
+      "metrics/mAP50-95(B)": {
+        "mean_percent": 41.31251983377294,
+        "sample_std_percent": 0.810687484447975
+      }
+    },
+    "ccff320": {
+      "metrics/mAP50(B)": {
+        "mean_percent": 65.71338396343452,
+        "sample_std_percent": 5.020532534757137
+      },
+      "metrics/mAP50-95(B)": {
+        "mean_percent": 41.67853117084878,
+        "sample_std_percent": 1.911864109783017
+      }
+    },
+    "fdpn": {
+      "metrics/mAP50(B)": {
+        "mean_percent": 64.17291022847478,
+        "sample_std_percent": 2.2871249402272062
+      },
+      "metrics/mAP50-95(B)": {
+        "mean_percent": 42.536002469869096,
+        "sample_std_percent": 0.26665686052509857
+      }
+    }
+  },
+  "all_archived_evaluations_match_within_1e-6": true
+}

@@ -1,0 +1,9 @@
+# Executed reproduction validation
+
+The final frozen release archives were extracted into a new workspace, separate from the historic experiments. All 22 public checkpoints were evaluated on their exact test partitions on an RTX 3090, using Python 3.11.14, PyTorch 2.7.1+cu126, image size 416 and batch size 4. Every recorded metric was **exactly equal** to its historical reference (maximum raw absolute difference 0.0). See `reevaluation_final_gpu/`.
+
+A fresh Python 3.11 virtual environment was installed using CPU PyTorch 2.7.1, torchvision 0.22.1 and the documented pinned requirements. Both baseline and FDPN loaded and completed test evaluation. CPU predictions yield small AP differences from GPU results and can change toolkit-selected precision/recall operating points; the measured differences are in `VALIDATION.json` and `clean_environment_complete/`. CPU execution is supported; cross-device equality is not promised.
+
+The baseline and FDPN each completed a full 30-epoch from-scratch Penn--Fudan training run through the new entrypoint. All effective numerical/training arguments for the baseline matched its archived protocol; differences concern portable paths, output names, overwrite protection and device representation. The newly trained baseline checkpoint also completed the documented custom-weight test evaluation. New training results are validation evidence for the workflow and are **not added to the paper's historical results or seed statistics**. Exact historical retraining trajectories are not guaranteed.
+
+Eleven automated tests passed for module interfaces, unsafe archive paths, symlinks, corrupted input rejection, run selection and existing-output protection. The installation was tested on Linux x86_64 with Python 3.11; other operating systems/interpreter ABIs were not certified.

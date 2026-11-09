@@ -1,0 +1,19 @@
+{
+  "name": "baseline_e30",
+  "started_utc": "2026-09-17T13:28:56.296542+00:00",
+  "model": "${PROJECT_ROOT}/configs/models/baseline_r18.yaml",
+  "model_sha256": "2725a909804022d5980a206ca17d3b7f97c788c1f3bf18fdc6026f5370f0f400",
+  "data": "${PROJECT_ROOT}/data/pennfudan_yolo/data.yaml",
+  "data_sha256": "05c8b2ab16881f4f6b337f7be0b670603a35b22731a36305bc5410115c34a4cd",
+  "epochs": 30,
+  "batch": 4,
+  "imgsz": 416,
+  "device": "0",
+  "seed": 2026,
+  "warmup_epochs": 3.0,
+  "initialization": "from_scratch",
+  "python": "3.11.14",
+  "torch": "2.7.1+cu126",
+  "cuda": "12.6",
+  "gpu": "NVIDIA GeForce RTX 3090"
+}

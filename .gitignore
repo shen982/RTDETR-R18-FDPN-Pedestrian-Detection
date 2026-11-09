@@ -25,3 +25,8 @@ third_party/tectonic-data/
 weights_*.zip
 public_weights_*.zip
 code.zip
+
+# Independent reproduction downloads and generated experiment outputs
+/reproduction_workspace/
+*.part
+*.extracting

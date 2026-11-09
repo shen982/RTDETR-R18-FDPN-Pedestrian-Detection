@@ -12,7 +12,7 @@ The five `public_weights_*.zip` archives are published as the [v1.0.0 GitHub Rel
 | `public_weights_ablation.zip` | Component ablations | 246 MB |
 | `public_weights_robustness.zip` | Three-seed Penn--Fudan study and neck control | 718 MB |
 
-The public assets differ from the original course-submission archives: private machine-path prefixes in checkpoint pickle metadata were replaced with an equal-length public prefix. Tensor-storage members are byte-identical to the originals. The Penn--Fudan baseline and FDPN original/public checkpoints were also loaded locally on CPU and their model `state_dict` tensors compared equal. The other 20 checkpoints have been verified at the archive-member byte level, not by separate model-load tests. The originals remain unchanged. Both the public and original hashes appear in the runtime's `snapshot/MANIFEST.json` and `snapshot/ORIGINAL_RUN_MANIFEST.json` respectively.
+The public assets differ from the original course-submission archives: private machine-path prefixes in checkpoint pickle metadata were replaced with an equal-length public prefix. Tensor-storage members are byte-identical to the originals. All 22 public checkpoints have now been loaded and evaluated on their exact test partitions; the archived metrics were reproduced within `1e-6` on an RTX 3090. The originals remain unchanged. Current public hashes and run mappings are in `reproduction/ASSETS.json` and `reproduction/RUNS.json`; original archive hashes remain in `weights/ARCHIVES.json` for provenance.
 
 ## Maintainer publication record
 
@@ -21,4 +21,4 @@ The public assets differ from the original course-submission archives: private m
 3. GitHub reports the following uploaded byte counts: 156,967,156; 313,898,734; 314,968,129; 245,742,964; and 718,220,237 bytes for the five weight archives, respectively. These match the local manifest.
 4. Do not revise the numerical paper results merely because checkpoint paths were redacted.
 
-To reproduce the read-only integrity check, extract [`public_runtime_code_v4.zip`](../artifacts/public_runtime_code_v4.zip) and the required public weight ZIP into one fresh parent directory, then run `python snapshot/scripts/submission_reproduce.py --action check --dataset penn --model baseline` or `--model fdpn`. Original dataset images and a compatible Python/PyTorch/CUDA environment are still required for evaluation or training. PyTorch checkpoints use pickle serialization; load only trusted files.
+For complete independent evaluation, use `python scripts/reproduce.py prepare --suite all`, then `python scripts/reproduce.py evaluate --suite all --device 0 --output reproduced_all`. This downloads runtime v5 and the exact dataset archives from v1.1.0, plus the existing v1.0.0 weights. See [the installation guide](../docs/REPRODUCTION.md). Use trusted checkpoint files and the published SHA-256 manifest.

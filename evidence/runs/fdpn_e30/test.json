@@ -1,0 +1,24 @@
+{
+  "protocol": "one evaluation of each validation-selected best.pt on held-out test split",
+  "data": "${PROJECT_ROOT}/data/pennfudan_yolo/data.yaml",
+  "split": "test",
+  "imgsz": 416,
+  "batch": 4,
+  "device": 0,
+  "run": "fdpn_e30",
+  "checkpoint": "${PROJECT_ROOT}/experiments/runs/fdpn_e30/weights/best.pt",
+  "metrics": {
+    "metrics/precision(B)": 0.6754139583813603,
+    "metrics/recall(B)": 0.609375,
+    "metrics/mAP50(B)": 0.6681528714725057,
+    "metrics/mAP50-95(B)": 0.46851939453664315,
+    "fitness": 0.48848274223022947
+  },
+  "speed_ms_per_image": {
+    "preprocess": 0.13332366943359375,
+    "inference": 9.552068710327148,
+    "loss": 0.00339508056640625,
+    "postprocess": 0.42977333068847656
+  },
+  "parameters": 22236052
+}

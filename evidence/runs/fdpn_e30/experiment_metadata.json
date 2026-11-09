@@ -1,0 +1,19 @@
+{
+  "name": "fdpn_e30",
+  "started_utc": "2026-09-17T13:41:09.803777+00:00",
+  "model": "${PROJECT_ROOT}/configs/models/candidate_fdpn.yaml",
+  "model_sha256": "9eaed7e793412a0f9efa997bf44e7ea5a00462cd095caa6992e024a0b90bec97",
+  "data": "${PROJECT_ROOT}/data/pennfudan_yolo/data.yaml",
+  "data_sha256": "05c8b2ab16881f4f6b337f7be0b670603a35b22731a36305bc5410115c34a4cd",
+  "epochs": 30,
+  "batch": 4,
+  "imgsz": 416,
+  "device": "0",
+  "seed": 2026,
+  "warmup_epochs": 3.0,
+  "initialization": "from_scratch",
+  "python": "3.11.14",
+  "torch": "2.7.1+cu126",
+  "cuda": "12.6",
+  "gpu": "NVIDIA GeForce RTX 3090"
+}
