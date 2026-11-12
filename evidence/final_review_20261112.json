@@ -36,7 +36,7 @@
         "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection"
       }
     ],
-    "sha256": "3f6ec55afcb80f2ce6b63a452fbba257312ef2ce0a59506fb5bacdacd68f26a2",
+    "sha256": "86eed8b463268c5ec85af8dba502dbb4d0b59948cc5cd2fa8bfd28f8086db43e",
     "ablation_correction": "Refocusing has no observed AP50:95 gain but favors AP50; removing it reduces AP50 by 1.15 percentage points from unrounded records.",
     "rubric": "Course assignment: reproduce existing computer vision work, retain verifiable experimental results, supply baseline and FDPN code/checkpoints, and analyze results. No frontier architectural novelty is required.",
     "edition": "Selected Chinese course submission"
@@ -305,7 +305,7 @@
         "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection"
       }
     ],
-    "sha256": "3f6ec55afcb80f2ce6b63a452fbba257312ef2ce0a59506fb5bacdacd68f26a2",
+    "sha256": "86eed8b463268c5ec85af8dba502dbb4d0b59948cc5cd2fa8bfd28f8086db43e",
     "ablation_correction": "Refocusing has no observed AP50:95 gain but favors AP50; removing it reduces AP50 by 1.15 percentage points from unrounded records.",
     "rubric": "Course assignment: reproduce existing computer vision work, retain verifiable experimental results, supply baseline and FDPN code/checkpoints, and analyze results. No frontier architectural novelty is required."
   },
@@ -325,16 +325,16 @@
     "all_rendered_text_glyphs_available": true,
     "pdf_fonts_embedded": true,
     "astral_math_text_mapping": "UTF-16BE surrogate pairs in PDF ToUnicode CMaps",
+    "experimental_table_numbers_unchanged": true,
+    "new_descriptive_numbers_verified_from_archived_runs": true,
     "independent_extracted_package_rebuild": {
-      "source_pdf_sha256": "3f6ec55afcb80f2ce6b63a452fbba257312ef2ce0a59506fb5bacdacd68f26a2",
+      "source_pdf_sha256": "86eed8b463268c5ec85af8dba502dbb4d0b59948cc5cd2fa8bfd28f8086db43e",
       "pages": 6,
       "all_page_text_matches": true,
       "all_fonts_embedded": true,
       "valid_utf16_math_mappings": true,
       "font_resources_checked": 14
-    },
-    "experimental_table_numbers_unchanged": true,
-    "new_descriptive_numbers_verified_from_archived_runs": true
+    }
   },
   "english_manuscript": {
     "pages": 7,
@@ -390,14 +390,16 @@
     "tables": 6,
     "table_cell_numbers_unchanged": true,
     "equations_unchanged": true,
-    "reference_entries_unchanged": true,
+    "reference_entries_unchanged": false,
     "added_analysis": [
       "Paired AP differences for all three seeds and both controls",
       "Ablation parameter reductions and code-derived 243840-parameter multi-kernel difference",
       "Metric-specific interpretation without localization or occlusion causal claims",
       "Independent training-budget comparisons and explicit test-reuse limitations"
     ],
-    "title": "有限标注行人检测中聚焦—扩散特征融合的受控评估与组件分析"
+    "title": "有限标注行人检测中聚焦—扩散特征融合的受控评估与组件分析",
+    "reference_count": 20,
+    "bibliography_correction": "Reference 4: article number 90, not page 90; author, title and year preserved."
   },
   "scientific_description_checks": {
     "verified_runs": 22,
@@ -452,18 +454,18 @@
       {
         "page": 2,
         "column": "left",
-        "top": 393.0749606299214,
+        "top": 404.47496062992144,
         "bottom": 48.18897637795276,
-        "content_bottom": 55.874960629921375,
-        "remaining_points": 7.69
+        "content_bottom": 67.27496062992141,
+        "remaining_points": 19.09
       },
       {
         "page": 2,
         "column": "right",
-        "top": 393.0749606299214,
+        "top": 404.47496062992144,
         "bottom": 48.18897637795276,
-        "content_bottom": 60.3749606299214,
-        "remaining_points": 12.19
+        "content_bottom": 71.77496062992142,
+        "remaining_points": 23.59
       },
       {
         "page": 3,
@@ -494,50 +496,50 @@
         "column": "right",
         "top": 582.3906739993724,
         "bottom": 48.18897637795276,
-        "content_bottom": 54.68673699149838,
-        "remaining_points": 6.5
+        "content_bottom": 71.28673699149837,
+        "remaining_points": 23.1
       },
       {
         "page": 5,
         "column": "left",
         "top": 793.700787401575,
         "bottom": 48.18897637795276,
-        "content_bottom": 55.34881889763792,
-        "remaining_points": 7.16
+        "content_bottom": 78.09685039370083,
+        "remaining_points": 29.91
       },
       {
         "page": 5,
         "column": "right",
         "top": 793.700787401575,
         "bottom": 48.18897637795276,
-        "content_bottom": 69.44881889763775,
-        "remaining_points": 21.26
+        "content_bottom": 50.948818897637736,
+        "remaining_points": 2.76
       },
       {
         "page": 6,
         "column": "left",
         "top": 793.700787401575,
         "bottom": 48.18897637795276,
-        "content_bottom": 62.00078740157474,
-        "remaining_points": 13.81
+        "content_bottom": 48.50078740157478,
+        "remaining_points": 0.31
       },
       {
         "page": 6,
         "column": "right",
         "top": 793.700787401575,
         "bottom": 48.18897637795276,
-        "content_bottom": 46.23584388907926,
-        "remaining_points": -1.95
+        "content_bottom": 82.33584388907923,
+        "remaining_points": 34.15
       }
     ]
   },
   "visual_checks": {
     "rendered_pages": 6,
-    "source_text_characters_checked": 13195,
+    "source_text_characters_checked": 14523,
     "missing_glyphs": [],
     "text_within_margins": true,
     "chinese_optical_hanging_punctuation_maximum": "one em",
-    "max_unused_body_column_points": 30.81,
+    "max_unused_body_column_points": 34.15,
     "page_bottoms": [
       {
         "page": 1,
@@ -545,7 +547,7 @@
       },
       {
         "page": 2,
-        "body_bottom_y": 779.24284
+        "body_bottom_y": 767.84284
       },
       {
         "page": 3,
@@ -553,16 +555,40 @@
       },
       {
         "page": 4,
-        "body_bottom_y": 782.60013
+        "body_bottom_y": 769.97909
       },
       {
         "page": 5,
-        "body_bottom_y": 780.669691
+        "body_bottom_y": 784.16898
       },
       {
         "page": 6,
-        "body_bottom_y": 789.782671
+        "body_bottom_y": 789.707662
       }
     ]
+  },
+  "final_recheck": {
+    "scope": "Final start-to-finish review before publication",
+    "pages_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "fixes": [
+      "Repeated header plus continued-table number on page 5",
+      "Kept paired dataset rows together across pages",
+      "Named AP50:95 explicitly in ablation difference column",
+      "Mapped diagram D3 to U3 in the manuscript caption",
+      "Corrected reference 4 article number",
+      "Removed repeated appendix prose while retaining the scientific limitations in the discussion"
+    ],
+    "reference_4_primary_source": "https://www.techscience.com/cmc/v86n3/65504/html",
+    "experimental_values_changed": false,
+    "equations_changed": false,
+    "new_experiments_claimed": false,
+    "remaining_layout_whitespace": "Normal page margins and at most 34.15 pt of unused body-column height; no large blank lower half-page."
   }
 }

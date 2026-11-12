@@ -89,7 +89,7 @@
 <p>本文复现已注明来源的 FDPN 增强 RT-DETR-R18 配置[10]，并将已发表的聚焦—扩散研究作为相关工作[4]。所用配置以三尺度对齐、并行逐通道卷积、双向特征重分配和第二次聚焦替换原 CCFF 路径；骨干、AIFI、查询选择、解码器主体和损失函数保持一致，解码器输入投影随通道宽度适配。本文的研究对象是该既有配置在有限标注行人检测中的性能及模块作用，融合拓扑与实现的原创归属保留给原作者。</p>
 <figure>
   <img src="architecture_visio_revision.png" alt="与源码一致的 RT-DETR-R18 FDPN 架构及同一测试图的真实输入输出">
-  <figcaption><strong>图 1　RT-DETR-R18 的 FDPN 融合结构及实际预测示例。</strong>（a）以 FDPN 替换 CCFF 的检测器总览。（b）两次聚焦、双向特征重分配及跳跃连接；右侧为第一阶段 FocusFeature 的内部结构。S<sub>i</sub> 与 V<sub>i</sub> 分别对应第三节的骨干特征 P<sub>i</sub> 与中间表示 Z<sub>i</sub><sup>(1)</sup>。左右示例为测试图像 FudanPed00001 及其预测结果，显示置信度阈值为 0.50。结构图按所用源码的实际计算图重绘；RT-DETR 背景见文献[3]，相关聚焦—扩散研究见文献[4]，本研究所用适配实现的来源见文献[10]。层索引见附录 B。</figcaption>
+  <figcaption><strong>图 1　RT-DETR-R18 的 FDPN 融合结构及实际预测示例。</strong>（a）以 FDPN 替换 CCFF 的检测器总览。（b）两次聚焦、双向特征重分配及跳跃连接；右侧为第一阶段 FocusFeature 的内部结构。图中 S<sub>i</sub>、V<sub>i</sub>、D<sub>3</sub> 分别对应正文 P<sub>i</sub>、Z<sub>i</sub><sup>(1)</sup>、U<sub>3</sub>。左右示例为测试图像 FudanPed00001 及其预测结果，显示置信度阈值为 0.50。结构图依据源码重绘，相关文献及实现来源见[3][4][10]；层索引见附录 B。</figcaption>
 </figure>
 <p class="noindent">本文主要工作如下：</p>
 <ul><li><strong>设置容量对照。</strong>在 Penn–Fudan 上比较原基线、FDPN 与参数量接近的 CCFF-320，并采用三个随机种子报告均值、样本标准差及配对差异。</li>
@@ -192,7 +192,7 @@
 <p>消融采用相同的 Penn–Fudan 30 轮协议，以独立重新训练的完整 FDPN 为同批对照。单核变体将两个聚焦阶段的核集合 {5,7,9,11} 改为 {5}；再聚焦变体以 1×1 投影替代第二阶段，保留 576 通道输出和最终跳跃连接。各变体维持解码器输入接口，但参数量不同。表 5 的差值均相对该批完整模型计算。</p>
 <table class="ablation">
   <caption>表 5　Penn–Fudan 模块消融（30 轮；AP 单位为 %；差值相对同批完整模型）</caption>
-  <thead><tr><th>配置</th><th>参数量 / M</th><th>AP50</th><th>AP50:95</th><th>差值 / 百分点</th></tr></thead>
+  <thead><tr><th>配置</th><th>参数量 / M</th><th>AP50</th><th>AP50:95</th><th>ΔAP50:95<br>/ 百分点</th></tr></thead>
   <tbody>
     <tr><td>完整 FDPN（重新训练）</td><td>22.236</td><td>65.25</td><td>44.01</td><td>+0.00</td></tr>
     <tr><td>仅用 5×5 核</td><td>21.992</td><td>59.67</td><td>38.02</td><td>−6.00</td></tr>
@@ -216,7 +216,7 @@
   <li>N. Carion 等，“End-to-End Object Detection with Transformers,” ECCV, pp. 213–229, 2020.</li>
   <li>A. Vaswani 等，“Attention Is All You Need,” NeurIPS, vol. 30, 2017.</li>
   <li>Y. Zhao 等，“DETRs Beat YOLOs on Real-Time Object Detection,” CVPR, pp. 16965–16974, 2024.</li>
-  <li>X. Luo, Y. Peng, R. Xie, P. Li, and Y. Qian，“Enhanced Multi-Scale Feature Extraction Lightweight Network for Remote Sensing Object Detection,” <i>Computers, Materials &amp; Continua</i>, vol. 86, no. 3, p. 90, 2026.</li>
+  <li>X. Luo, Y. Peng, R. Xie, P. Li, and Y. Qian，“Enhanced Multi-Scale Feature Extraction Lightweight Network for Remote Sensing Object Detection,” <i>Computers, Materials &amp; Continua</i>, vol. 86, no. 3, Art. no. 90, 2026.</li>
   <li>X. Zhu 等，“Deformable DETR: Deformable Transformers for End-to-End Object Detection,” ICLR, 2021.</li>
   <li>S. Liu 等，“DAB-DETR: Dynamic Anchor Boxes Are Better Queries for DETR,” ICLR, 2022.</li>
   <li>H. Zhang 等，“DINO: DETR with Improved DeNoising Anchor Boxes for End-to-End Object Detection,” ICLR, 2023.</li>
@@ -236,7 +236,7 @@
 </ol>
 <h2>附录 A　补充实验分析</h2>
 <h3>A.1 初始实验与训练曲线</h3>
-<p>初始 FDPN 与消融同批完整模型的 AP50:95 分别为 46.85% 和 44.01%，相差 2.84 个百分点，具体差异来源未被隔离。两次运行不并入后续三个随机种子的统计；模块消融以同批完整模型为参照。图 3 给出初始两组实验的验证曲线，30 轮末期指标仍在上升，说明现有预算不足以据此判定收敛。</p>
+<p>图 3 展示初始两组运行的验证曲线。30 轮末期指标仍在上升，尚不足以判定收敛。该组运行不并入后续三个随机种子的统计；模块消融仍以同批完整模型为参照。</p>
 <figure><img src="initial_penn_curves_column.png" alt="初始单种子 Penn–Fudan 训练验证曲线"><figcaption><strong>图 3　初始 Penn–Fudan 实验的验证集 AP 曲线。</strong>两组实验均训练 30 轮，随机种子为 2026。曲线反映单次训练过程，不表示随机种子间的波动；末期指标仍有上升，不能据此判定模型已经收敛。</figcaption></figure>
 <h3>A.2 训练预算比较</h3>
 <p>表 A1 汇总 FDPN 相对原基线的带符号差值，包括 COCO 在短预算下的 AP50 下降。100 轮实验属于复用既有测试划分的探索性扩展；各差值均先由未舍入指标计算，再统一保留两位小数。</p>
@@ -249,7 +249,7 @@
 <tr><td>COCO-person</td><td>100</td><td>+2.40</td><td>+1.19</td></tr></tbody>
 </table>
 <h3>A.3 随机种子与容量对照</h3>
-<p>原基线、FDPN 和 CCFF-320 在相同划分上分别以种子 2026、2027、2028 训练，统计见表 2，逐次分布见图 2。CCFF-320 保留原融合拓扑，其推理参数量为 22.029 M，与 FDPN 的 22.236 M 相差 0.93%，但未匹配计算量和推理时间。样本标准差采用 <i>n</i>=3、分母为 <i>n</i>−1 的定义，只描述固定测试划分上的种子波动。</p>
+<p>原基线、FDPN 和 CCFF-320 在相同划分上分别以种子 2026、2027、2028 训练，统计见表 2，逐次分布见图 2。CCFF-320 保留原融合拓扑并匹配参数量，但未匹配计算量和推理时间。样本标准差采用 <i>n</i>=3、分母为 <i>n</i>−1 的定义，只描述固定测试划分上的种子波动。</p>
 <h2>附录 B　实现接口</h2>
 <p>第 11、18 层 FocusFeature 的参数相互独立，核集合均为 {5,7,9,11}。解码器读取第 24、18、21 层，分别对应步长 {8,16,32} 和通道数 {256,576,256}。输入投影将各尺度适配至 256 维隐藏表示；解码器使用三层结构和 300 个查询。骨干与 AIFI 的算子结构保持一致。</p>
 

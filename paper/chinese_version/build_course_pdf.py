@@ -52,6 +52,20 @@ class FlexibleKeepTogether(KeepTogether):
         return super().split(available_width, available_height)
 
 
+class ContinuingTable(Table):
+    """Repeat the column header and identify every continued table segment."""
+
+    def split(self, available_width, available_height):
+        parts = super().split(available_width, available_height)
+        label = getattr(self, "continuation_label", None)
+        if len(parts) == 2 and label:
+            for part in parts:
+                part.continuation_label = label
+                part.continuation_style = self.continuation_style
+            return [parts[0], Paragraph(label, self.continuation_style), parts[1]]
+        return parts
+
+
 class CourseDocTemplate(BaseDocTemplate):
     keepTogetherClass = FlexibleKeepTogether
 
@@ -147,7 +161,7 @@ def academic_table(node, styles):
         widths = [COLUMN * x for x in (.34, .24, .21, .21)]
     elif count == 4 and "robustness-stats" not in reading.classes(node) and "budget-sensitivity" not in reading.classes(node):
         widths = [COLUMN * x for x in (.34, .22, .20, .24)]
-    grid = Table(data, colWidths=widths, repeatRows=headers, hAlign="CENTER")
+    grid = ContinuingTable(data, colWidths=widths, repeatRows=headers, hAlign="CENTER")
     grid.setStyle(TableStyle([
         ("FONTNAME", (0, 0), (-1, -1), "Latin"),
         ("LINEABOVE", (0, 0), (-1, 0), .8, colors.black),
@@ -160,6 +174,14 @@ def academic_table(node, styles):
         ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
     ]))
     caption = reading.first_descendant(node, "caption")
+    import re
+    number = re.match(r"表\s*([A-Z]?\d+)", reading.plain_text(caption)).group(1)
+    grid.continuation_label = "续表 " + number
+    grid.continuation_style = styles["table_caption"]
+    if number == "3":
+        # Keep baseline and FDPN rows from the same dataset together.
+        grid.setStyle(TableStyle([("NOSPLIT", (0, row), (-1, row + 1))
+                                  for row in (1, 3, 5)]))
     return [Paragraph(reading.paragraph_markup(caption), styles["table_caption"]), grid, Spacer(1, 5)]
 
 
