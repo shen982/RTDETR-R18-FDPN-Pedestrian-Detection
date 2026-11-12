@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>有限标注行人检测中聚焦—扩散特征融合的受控评估与组件分析</title>
+<style>
+  @page { size: A4; margin: 18mm 18mm 20mm 18mm; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0 auto;
+    max-width: 178mm;
+    color: #171717;
+    background: #fff;
+    font-family: "Noto Serif CJK SC", "Noto Sans CJK SC", "Droid Sans Fallback", serif;
+    font-size: 11pt;
+    line-height: 1.72;
+    text-align: justify;
+  }
+  h1 { margin: 8mm 0 3mm; font-size: 22pt; line-height: 1.3; text-align: center; }
+  .subtitle { text-align: center; font-size: 11pt; color: #555; margin-bottom: 5mm; }
+  .author { text-align: center; margin-bottom: 7mm; }
+  h2 { margin: 8mm 0 3mm; font-size: 16pt; border-bottom: 1.5px solid #333; padding-bottom: 1.5mm; }
+  h3 { margin: 5mm 0 2mm; font-size: 13pt; }
+  h4 { margin: 4mm 0 1.5mm; font-size: 11.5pt; }
+  p { margin: 0 0 3mm; text-indent: 2em; }
+  p.noindent, .abstract p, .note p, figcaption, li, td, th, .equation, .code { text-indent: 0; }
+  .abstract, .note { margin: 4mm 0; padding: 0; }
+  .english-title { text-align: center; font-family: "Liberation Serif", "Times New Roman", serif; font-weight: bold; font-size: 14pt; line-height: 1.4; margin: 5mm 0 3mm; }
+  .abstract h2, .note h3 { margin: 0 0 2mm; border: 0; padding: 0; font-size: 12pt; }
+  .keywords { margin: 3mm 0 6mm; }
+  .keywords strong { margin-right: 2mm; }
+  ul, ol { margin: 1.5mm 0 3mm 6mm; padding-left: 5mm; }
+  li { margin-bottom: 1.5mm; }
+  figure { margin: 6mm 0; page-break-inside: avoid; text-align: center; }
+  figure img { max-width: 100%; height: auto; }
+  figcaption { margin-top: 2mm; font-size: 9.5pt; color: #333; text-align: left; line-height: 1.45; }
+  table { width: 100%; border-collapse: collapse; margin: 4mm 0 6mm; font-size: 9.5pt; page-break-inside: avoid; }
+  caption { font-weight: bold; margin-bottom: 2mm; }
+  th, td { border: 0; padding: 1.6mm 2mm; vertical-align: middle; }
+  table { border-top: 1.5px solid #222; border-bottom: 1.5px solid #222; }
+  thead { border-bottom: 1px solid #222; }
+  th { text-align: center; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.center { text-align: center; }
+  .best { font-weight: bold; }
+  .equation {
+    margin: 4mm auto;
+    padding: 2.5mm 4mm;
+    width: 92%;
+    text-align: center;
+    font-family: "Liberation Serif", "Times New Roman", serif;
+    background: #fafafa;
+    border: 1px solid #ddd;
+  }
+  .explain { color: #2f5266; font-weight: 600; }
+  .page-break { break-before: auto; }
+  .refs { font-size: 9.2pt; line-height: 1.45; }
+  .refs li { margin-bottom: 2mm; }
+  .code {
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 8.5pt;
+    line-height: 1.45;
+    background: #f6f6f6;
+    border: 1px solid #ddd;
+    padding: 3mm;
+  }
+  .hashes { table-layout: fixed; font-size: 7.5pt; }
+  .hashes td:last-child { word-break: break-all; font-family: "DejaVu Sans Mono", monospace; }
+  .footer-note { margin-top: 8mm; font-size: 9pt; color: #666; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>有限标注行人检测中聚焦—扩散特征融合的受控评估与组件分析</h1>
+<div class="author">陈佳旭<br>华北电力大学（保定）自动化系</div>
+<div class="abstract"><h2>摘要</h2>
+<p>有限标注条件下，跨尺度特征融合需要兼顾空间细节、语义上下文与计算开销。针对融合容量增加和重复聚合的收益尚不明确的问题，本文以 RT-DETR-R18 为基线，对已有聚焦扩散金字塔网络（FDPN）配置进行受控评估。在统一训练协议下，设置原始融合路径和参数量接近的加宽颈部作为对照，并通过消融实验分析多核上下文聚合与第二次聚焦的作用。Penn–Fudan 三个随机种子的结果表明，FDPN 的 AP50:95 均值较两组对照分别提高 1.22 和 0.86 个百分点；相对原基线，AP50 均值下降 1.42 个百分点，推理模型参数量增加 11.9%。在固定 VOC2007-person 和 COCO2017-person 子集的探索性 100 轮实验中，AP50:95 分别提高 0.56 和 1.19 个百分点。单次消融中，完整多核配置优于单个 5×5 核配置；移除第二次聚焦后，AP50:95 近似不变，而 AP50 降低。结果表明，该融合配置的收益取决于评价指标和实验设置；多核上下文聚合与重复聚焦应结合精度和计算预算分别评价。</p></div>
+<div class="keywords"><strong>关键词：</strong>行人检测；端到端目标检测；跨尺度特征融合；多核上下文建模；有限标注学习</div>
+<div class="english-title">Controlled Evaluation of Focus–Diffusion Feature Fusion for Data-Limited Pedestrian Detection</div>
+<div class="author">Jiaxu Chen<br>Department of Automation, North China Electric Power University, Baoding, China</div>
+<div class="abstract english"><h2>Abstract</h2><p>Cross-scale feature fusion under limited pedestrian annotations must balance spatial detail, semantic context, and computational cost. We evaluate an existing Focusing Diffusion Pyramid Network (FDPN) configuration within RT-DETR-R18 to examine the effects of increased fusion capacity and repeated aggregation. Under matched training protocols, we compare FDPN with the original fusion path and a widened neck with a similar parameter count, and use ablations to assess multi-kernel context aggregation and a second focusing stage. On Penn–Fudan, mean AP over IoU thresholds 0.50–0.95 across three random seeds increases by 1.22 and 0.86 percentage points over the two controls, respectively. Relative to the original baseline, mean AP at IoU 0.50 decreases by 1.42 percentage points, while the inference-model parameter count increases by 11.9%. Exploratory 100-epoch experiments on fixed VOC2007-person and COCO2017-person subsets yield AP gains of 0.56 and 1.19 percentage points. In a single-run ablation, the complete multi-kernel configuration outperforms a single 5×5 kernel. Removing the second focusing stage leaves AP over IoU 0.50–0.95 nearly unchanged but reduces AP at IoU 0.50. These results indicate that the observed benefits depend on the evaluation metric and experimental setting; multi-kernel aggregation and repeated focusing require separate assessment against accuracy and computational budgets.</p></div>
+<div class="keywords"><strong>Keywords:</strong> pedestrian detection, end-to-end object detection, cross-scale feature fusion, multi-kernel context modeling, data-limited learning</div>
+
+<h2>一、引言</h2>
+<p>目标检测旨在同时确定图像中目标的类别与位置。DETR 将检测建模为集合预测，通过目标查询和二分图匹配建立预测与标注之间的一对一对应关系，减少了对非极大值抑制等手工后处理的依赖[1][2]。后续方法通过稀疏多尺度注意力、显式空间查询和去噪训练改善特征交互与优化过程[5]–[7]。RT-DETR 将尺度内注意力交互与卷积跨尺度融合分离，并结合查询选择机制实现高效端到端检测[3]，为分析颈部融合结构提供了明确的模块边界。</p>
+<p>在训练图像数量有限时，融合结构的收益不能仅由其表达容量推断。相邻层金字塔逐级传递不同分辨率的信息[8][9]；直接多层聚合则将多个层级对齐后进行联合建模，可缩短跨尺度交互路径。然而，融合拓扑、通道宽度和计算量通常同时变化，较高的检测精度未必来自拓扑本身。由此产生两个需要实验回答的问题：直接多层融合能否优于参数量接近的传统颈部，以及完成一次上下文聚合后是否仍需第二次聚焦。</p>
+<p>本文复现已注明来源的 FDPN 增强 RT-DETR-R18 配置[10]，并将已发表的聚焦—扩散研究作为相关工作[4]。所用配置以三尺度对齐、并行逐通道卷积、双向特征重分配和第二次聚焦替换原 CCFF 路径；骨干、AIFI、查询选择、解码器主体和损失函数保持一致，解码器输入投影随通道宽度适配。本文的研究对象是该既有配置在有限标注行人检测中的性能及模块作用，融合拓扑与实现的原创归属保留给原作者。</p>
+<figure>
+  <img src="architecture_visio_revision.png" alt="与源码一致的 RT-DETR-R18 FDPN 架构及同一测试图的真实输入输出">
+  <figcaption><strong>图 1　RT-DETR-R18 的 FDPN 融合结构及实际预测示例。</strong>（a）以 FDPN 替换 CCFF 的检测器总览。（b）两次聚焦、双向特征重分配及跳跃连接；右侧为第一阶段 FocusFeature 的内部结构。S<sub>i</sub> 与 V<sub>i</sub> 分别对应第三节的骨干特征 P<sub>i</sub> 与中间表示 Z<sub>i</sub><sup>(1)</sup>。左右示例为测试图像 FudanPed00001 及其预测结果，显示置信度阈值为 0.50。结构图按所用源码的实际计算图重绘；RT-DETR 背景见文献[3]，相关聚焦—扩散研究见文献[4]，本研究所用适配实现的来源见文献[10]。层索引见附录 B。</figcaption>
+</figure>
+<p class="noindent">本文主要工作如下：</p>
+<ul><li><strong>设置容量对照。</strong>在 Penn–Fudan 上比较原基线、FDPN 与参数量接近的 CCFF-320，并采用三个随机种子报告均值、样本标准差及配对差异。</li>
+<li><strong>分析模块与计算代价。</strong>结合多核及再聚焦消融，区分 AP50 与 AP50:95 的变化，并对照参数量、计算量和推理时间评价配置取舍。</li>
+<li><strong>检验训练预算的影响。</strong>在固定 VOC2007-person 与 COCO2017-person 子集上比较不同训练轮数，并提供各组配置、训练记录、测试指标与权重。</li></ul>
+<p>本文的“有限标注”指小规模训练划分上的全监督学习，不采用正式少样本检测协议。公共子集实验用于考察同一检测器中融合配置的条件性表现，不等同于完整官方基准或跨数据集零样本泛化评价。</p>
+
+<h2>二、相关工作</h2>
+<h3>2.1 基于 Transformer 的端到端检测</h3>
+<p>基于 Transformer 的检测器通过特征编码、查询初始化和集合解码生成一组目标预测[1]。Deformable DETR 利用稀疏多尺度采样降低注意力计算开销[5]；DAB-DETR 将空间位置显式引入目标查询[6]；DINO 结合去噪、混合查询选择和迭代框修正改善训练与定位[7]。这些方法分别作用于特征交互、查询表示和优化过程，为在固定其余模块时分析单一结构变化提供了基础。</p>
+<p>实时检测进一步要求控制编码器和解码器的计算开销。RT-DETR 通过尺度内注意力与跨尺度卷积融合的分工减少冗余交互，并允许调整解码器深度[3]。本文沿用其 R18 配置，重点考察跨尺度融合路径及必要的输入通道适配，以限制比较中同时变化的模块范围。这一设置将编码与查询机制的改动排除在主要比较之外，使结果能够围绕融合路径解释。</p>
+<h3>2.2 多尺度表征与特征融合</h3>
+<p>FPN 通过自顶向下的侧向连接构造兼具空间分辨率与语义信息的特征金字塔[8]；PANet 增加自底向上路径，以缩短浅层定位信息的传播距离[9]；BiFPN 采用可学习权重进行重复双向融合[11]。三类设计均处理跨层信息交互，但在连接拓扑、重采样次数和融合权重上存在差异。</p>
+<p>与相邻层逐级融合相比，多层直接聚合先将不同尺度对齐至共同分辨率，再进行上下文建模。该结构增加了直接交互机会，也可能改变表示宽度与感受野。因此，评价融合结构时需要同时报告参数和计算代价，并通过容量接近的对照检验单纯加宽是否能解释性能变化。</p>
+<h3>2.3 聚焦—扩散特征融合</h3>
+<p>聚焦—扩散结构将跨尺度处理分为两个阶段：先对齐并聚合多个层级的特征，再将融合结果分发至各检测尺度。已有 FDFPN 研究将这种组织方式用于遥感目标检测[4]。本文使用的工程源码提供 FocusFeature 算子及其在 RT-DETR 中的 FDPN 融合图[10]。本文按实际执行的源码定义算子与连接关系，不将相关文献中的实验结论直接迁移到行人检测任务。</p>
+<p>该结构在有限行人标注下的收益仍需独立验证。本文采用匹配训练设置、容量对照与模块消融，评价完整配置及各模块的经验作用。其中，容量对照用于检验单纯加宽这一替代解释，消融则比较具体算子组合的作用。</p>
+
+<h2>三、方法</h2>
+<h3>3.1 问题定义与基线</h3>
+<p>设输入图像 <i>I</i> 的空间尺寸为 <i>H×W</i>。ResNet-18 风格骨干[12]输出特征 {<i>P</i><sub>3</sub>, <i>P</i><sub>4</sub>, <i>P</i><sub>5</sub>}，对应步长 {8,16,32} 和通道数 {128,256,512}。记 <i>F</i><sub>5</sub> 为第 8–10 层投影—AIFI—投影序列的 256 通道输出；<i>P</i><sub>5</sub> 则指原始 512 通道骨干特征。基线通过 CCFF 的自顶向下与自底向上路径构造三个解码器输入。所用实现按最大类别得分选择前 <i>Q</i>=300 个编码位置以初始化目标查询，三层 RT-DETR 解码器输出类别概率与归一化边界框。</p>
+<p>比较配置使用相同的一对一匹配、分类与边界框回归损失、查询数量及解码器主体[1][3]。结构变化涉及融合路径和必要的输入投影，因而同时影响模型容量。本文通过加宽 CCFF 对照部分控制参数量差异，但不将其视为完全隔离拓扑效应的实验。</p>
+<h3>3.2 整体架构</h3>
+<p>图 1 给出 FDPN 的实际连接关系。第一阶段 FocusFeature 接收 (<i>F</i><sub>5</sub>, <i>P</i><sub>4</sub>, <i>P</i><sub>3</sub>)，聚合结果位于步长 16 的尺度，随后通过降采样和上采样分支分别传播至步长 32 和 8，与对应骨干特征拼接后由 RepC3 精炼。第二阶段在步长 16 重新聚合三个特征流，并通过最终双向融合生成解码器输入。</p>
+<p>两个 FocusFeature 具有相同的算子结构，但参数独立。“第二次聚焦”因此表示另一个可学习聚合阶段，而非重复调用同一组权重。两个阶段及其直接重分配分支均保留至最终融合；具体层索引见附录 B。</p>
+<h3>3.3 分辨率对齐与跨尺度聚合</h3>
+<p>FDPN 输出至解码器的三个尺度通道数为 {256,576,256}，基线为 {256,256,256}。两者使用适配各自通道数的输入投影，解码器隐藏维度、层数和查询数量保持一致。因此，融合拓扑与表示宽度在该比较中同时变化。</p>
+<p>第一阶段以 <i>P</i><sub>4</sub> 的空间分辨率为对齐目标。<i>F</i><sub>5</sub> 分支先上采样 2 倍，再执行 1×1 卷积；<i>P</i><sub>4</sub> 分支直接投影；<i>P</i><sub>3</sub> 分支使用 ADown 降采样。ADown 先进行平均池化与通道拆分，一路执行步长 2 卷积，另一路执行最大池化和 1×1 投影，随后拼接。分别记三个变换为 <i>U</i>、<i>M</i> 与 <i>D</i>，则对齐结果为：</p>
+<div class="equation">A = Concat(U(F<sub>5</sub>), M(P<sub>4</sub>), D(P<sub>3</sub>))　（1）</div>
+<p>各分支输出通道数均为中间层输入通道数的一半，拼接结果因而为其 1.5 倍。该设计保留三个层级的特征，并限制后续上下文聚合的表示宽度。本配置两个聚焦阶段的聚合通道数分别为 384 和 576。</p>
+<h3>3.4 并行多核上下文建模</h3>
+<p>对齐特征通过核集合 𝒦={5,7,9,11} 的并行逐通道卷积进行空间建模。记 DW<sub>k</sub> 为核边长为 <i>k</i> 的逐通道卷积，𝒫 为逐点卷积、批归一化与 SiLU 激活组成的投影算子，则聚焦操作为：</p>
+<div class="equation">Φ(A) = A + 𝒫(A + ∑<sub>k∈𝒦</sub> DW<sub>k</sub>(A))　（2）</div>
+<p>内层恒等分支保留对齐特征，外层残差为特征和梯度提供直接通路。逐通道卷积在各通道内独立进行空间聚合，通道之间的信息交互由 𝒫 完成。核尺寸预先固定，各分支通过求和融合，不含随输入变化的分支权重。两个独立聚焦算子分别记为 Φ<sub>1</sub> 和 Φ<sub>2</sub>。</p>
+<p>对于通道数为 <i>C</i> 的特征，逐通道卷积的权重数与 <i>C</i> 成正比，而同宽密集卷积的权重数与 <i>C</i> 的平方成正比。这解释了大核空间聚合的参数效率，但不能直接推出整个 FDPN 的计算优势；通道扩展、逐点投影和双向融合的代价仍需由完整模型统计。</p>
+<h3>3.5 双向特征重分配与第二次聚焦</h3>
+<p>本文的“扩散”指确定性的跨尺度特征重分配。设第一阶段输出为 <i>Z</i><sub>4</sub><sup>(1)</sup>=Φ<sub>1</sub>(A)。其步长 2 卷积与上采样分支分别记为 <i>D</i><sub>5</sub>（第 12 层）和 <i>U</i><sub>3</sub>（第 15 层）。两路特征分别与原始 <i>P</i><sub>5</sub>、<i>P</i><sub>3</sub> 拼接，经 RepC3 得到 <i>Z</i><sub>5</sub><sup>(1)</sup> 和 <i>Z</i><sub>3</sub><sup>(1)</sup>。随后执行第二次聚焦：</p>
+<div class="equation">Z<sub>4</sub><sup>(2)</sup> = Φ<sub>2</sub>(Align(Z<sub>5</sub><sup>(1)</sup>, Z<sub>4</sub><sup>(1)</sup>, Z<sub>3</sub><sup>(1)</sup>))　（3）</div>
+<p><i>Z</i><sub>4</sub><sup>(2)</sup> 的最终降采样分支与 <i>D</i><sub>5</sub>、<i>Z</i><sub>5</sub><sup>(1)</sup> 拼接，上采样分支与 <i>U</i><sub>3</sub>、<i>Z</i><sub>3</sub><sup>(1)</sup> 拼接；两者经 RepC3 分别生成 <i>O</i><sub>5</sub> 与 <i>O</i><sub>3</sub>，并令 <i>O</i><sub>4</sub>=<i>Z</i><sub>4</sub><sup>(2)</sup>。最终表示同时保留第一阶段的重分配信息与第二阶段的聚合结果。第四节分别评价多核上下文聚合和第二次聚焦的经验收益。</p>
+
+<h2>四、实验与结果分析</h2>
+<p>实验围绕三个问题展开：FDPN 相对原基线与容量接近的对照是否具有精度收益；收益对应何种计算代价；模块作用是否随评价指标和训练预算变化。</p>
+<h3>4.1 数据与评价协议</h3>
+<p><strong>数据划分。</strong>以 Penn–Fudan[13] 为主要数据集，并使用 VOC2007[18][19] 和 COCO2017[17][20] 的固定 person 单类子集。Penn–Fudan 的检测框由官方实例掩码生成，全部 423 个实例与随附文本标注一致。表 1 列出图像互不重叠的训练、验证与测试划分。VOC 各划分分别从官方对应数据池抽取；COCO 训练与验证样本均来自 train2017 且互不重叠，测试样本来自 val2017。两个公共子集的每个划分均包含 20% 不含行人的背景图像。由于所用评估器未实现 difficult/crowd 忽略规则，抽样时排除含此类行人标注的整幅图像，其余合格图像中的全部行人框均予保留。各数据集分别训练模型。</p>
+<table class="dataset-splits">
+  <caption>表 1　数据集划分（图像数 / 行人标注框数）</caption>
+  <thead><tr><th>数据集</th><th>训练</th><th>验证</th><th>测试</th></tr></thead>
+  <tbody>
+    <tr><td>Penn–Fudan</td><td>120 / 294</td><td>25 / 65</td><td>25 / 64</td></tr>
+    <tr><td>VOC2007-person</td><td>300 / 482</td><td>50 / 77</td><td>100 / 152</td></tr>
+    <tr><td>COCO2017-person</td><td>300 / 748</td><td>50 / 121</td><td>100 / 297</td></tr>
+  </tbody>
+</table>
+<p><strong>训练设置。</strong>各组比较使用相同数据和优化设置，均从头训练[14][15]。输入尺寸为 416×416 像素，批量为 4，优化器为 AdamW[16]，学习率和权重衰减均为 10<sup>−4</sup>，设备为 RTX 3090。初始 Penn–Fudan 对照与模块消融训练 30 轮，随机种子为 2026；公共子集分别独立训练 30 和 100 轮。后续在 Penn–Fudan 上以种子 2026、2027、2028 重新训练原基线、FDPN 和 CCFF-320，各训练 30 轮。九次训练完成后统一评价测试集；该组实验复用既有数据划分，用于分析随机种子敏感性。</p>
+<p><strong>指标与模型选择。</strong>主要指标为 IoU 从 0.50 至 0.95、间隔为 0.05 时的平均 AP，记为 AP50:95；另报告 AP50、精确率和召回率[17]。由于仅有 person 一个前景类别，mAP 与该类 AP 相等。各次运行依据验证集适应度 0.1×AP50+0.9×AP50:95 选择规定训练轮数内的最佳检查点，同次运行的全部测试指标均由该检查点计算。精确率（P）与召回率（R）使用工具包根据各模型 F1 曲线选取的工作点，不对应统一部署阈值。AP、P 和 R 以百分比表示；指标差值以百分点表示，并由未舍入数值计算。参数量以百万（M）为单位。除特别说明外，误差项为三个随机种子的样本标准差。</p>
+<h3>4.2 主要比较与容量对照</h3>
+<p>CCFF-320 在训练前根据参数量接近程度确定。其推理模型参数量为 22.029 M，与 FDPN 的 22.236 M 相差 0.93%；该对照保留原有融合拓扑、骨干、AIFI 和解码器主体，但不匹配计算量与推理时间。CCFF-320 与原基线的差异反映传统拓扑下的加宽结果，而 FDPN 与 CCFF-320 的比较用于评价容量接近时的融合配置。表 2 报告三个随机种子的结果。</p>
+<table class="robustness-stats"><caption>表 2　Penn–Fudan 三个随机种子的测试结果（30 轮；AP 单位为 %；均值 ± 样本标准差）</caption>
+<thead><tr><th>模型</th><th>参数量 / M</th><th>AP50</th><th>AP50:95</th></tr></thead><tbody>
+<tr><td>RT-DETR-R18</td><td>19.873</td><td>65.59 ± 2.65</td><td>41.31 ± 0.81</td></tr>
+<tr><td>CCFF-320 对照</td><td>22.029</td><td>65.71 ± 5.02</td><td>41.68 ± 1.91</td></tr>
+<tr><td>+ FDPN</td><td>22.236</td><td>64.17 ± 2.29</td><td>42.54 ± 0.27</td></tr>
+</tbody></table>
+<p>FDPN 的 AP50:95 均值为 42.54%，较原基线的 41.31% 和 CCFF-320 的 41.68% 分别提高 1.22 与 0.86 个百分点。相对原基线，三个相同种子下的配对差值分别为 +1.88、+1.06 和 +0.74 个百分点，方向一致；相对 CCFF-320 的差值分别为 −1.20、+2.65 和 +1.12 个百分点，说明容量接近时的优势并非逐次成立。结果支持该配置在本划分上的平均跨阈值精度收益，但尚不足以将收益独立归因于融合拓扑。</p>
+<p>AP50 的变化方向不同：FDPN 均值为 64.17%，较原基线下降 1.42 个百分点。AP50 与 AP50:95 分别强调单一宽松定位阈值和多个定位阈值的平均表现，两者不能互相替代。当前汇总指标不足以进一步确定差异源于漏检、误检或边界框定位误差；图 1 的单幅预测仅说明实现输出，不能作为小目标或遮挡性能改善的证据。图 2 展示逐次结果；样本标准差反映本次种子波动，不构成统计显著性结论。</p>
+<figure>
+  <img src="robustness_summary.png" alt="三种子 Penn–Fudan AP50 与 AP50:95 的逐次结果及均值标准差">
+  <figcaption><strong>图 2　Penn–Fudan 三个随机种子的测试结果。</strong>彩色点表示各次运行的 AP，黑色菱形和误差线分别表示均值与样本标准差，误差线并非置信区间。（a）IoU=0.50 时的 AP；（b）IoU=0.50–0.95 上的平均 AP。三个种子使用相同的 25 张测试图像。</figcaption>
+</figure>
+<h3>4.3 不同数据来源与训练预算</h3>
+<p>表 3 将初始 Penn–Fudan 实验与两个公共子集的 100 轮结果分别列示。后者在查看 30 轮测试结果后开展，属于复用测试划分的探索性扩展；这些运行不与后续 Penn–Fudan 三个种子的结果合并统计。</p>
+<table>
+  <caption>表 3　验证集选出的最佳检查点测试精度：初始 Penn–Fudan 对照与公共子集 100 轮扩展（种子 2026；AP 单位为 %；增益为百分点）</caption>
+  <thead><tr><th>数据集 / 轮数</th><th>模型</th><th>AP50</th><th>AP50:95</th><th>ΔAP50:95 / 百分点</th></tr></thead>
+  <tbody>
+    <tr><td>Penn–Fudan / 30</td><td>R18</td><td>63.45</td><td>40.42</td><td>—</td></tr>
+    <tr><td>Penn–Fudan / 30</td><td>+ FDPN</td><td>66.82</td><td>46.85</td><td>+6.44</td></tr>
+    <tr><td>VOC-person / 100</td><td>R18</td><td>36.30</td><td>16.71</td><td>—</td></tr>
+    <tr><td>VOC-person / 100</td><td>+ FDPN</td><td>39.14</td><td>17.27</td><td>+0.56</td></tr>
+    <tr><td>COCO-person / 100</td><td>R18</td><td>16.44</td><td>6.92</td><td>—</td></tr>
+    <tr><td>COCO-person / 100</td><td>+ FDPN</td><td>18.84</td><td>8.11</td><td>+1.19</td></tr>
+  </tbody>
+</table>
+<p>初始 Penn–Fudan 单次实验中，AP50:95 提高 6.44 个百分点至 46.85%，AP50 提高 3.36 个百分点至 66.82%；召回率提高 7.81 个百分点，精确率下降 3.17 个百分点。后续不同种子的平均 AP50:95 增益仅为 1.22 个百分点，因此初始较大差值不能作为该配置的稳定预期收益。</p>
+<p>在 100 轮实验中，VOC-person 和 COCO-person 的 AP50:95 分别提高 0.56 和 1.19 个百分点，AP50 分别提高 2.84 和 2.40 个百分点。与附录 A 的 30 轮结果比较，VOC 的 AP50:95 增益由 3.28 缩小至 0.56 个百分点，而 COCO 由 0.16 增至 1.19 个百分点；COCO 的 AP50 差值也由 −0.61 转为 +2.40 个百分点。由此可见，短训练预算下的相对排序不能直接替代较长预算下的比较。两种预算为独立训练运行，并非同一检查点的连续训练，因此这些变化不能解释为确定的学习动态。</p>
+<p>公共子集结果仍为单次运行，且 COCO-person 的最佳 AP50:95 仅为 8.11%。这些结果提供了数据来源与训练预算的补充观察，不支持对完整 VOC/COCO 基准性能或跨域泛化作出结论。</p>
+<h3>4.4 模型复杂度与推理开销</h3>
+<table>
+  <caption>表 4　推理模型复杂度与历史时延：THOP 计算量按 640×640 像素输入统计；时延来自 RTX 3090 上 416×416 像素输入、批量为 4 的测试</caption>
+  <thead><tr><th>模型</th><th>参数量</th><th>GFLOPs<br>640×640</th><th>ms/图<br>416×416</th></tr></thead>
+  <tbody>
+    <tr><td>RT-DETR-R18</td><td class="num best">19.873 M</td><td class="num best">56.9</td><td class="num best">8.71</td></tr>
+    <tr><td>RT-DETR-R18 + FDPN</td><td class="num">22.236 M</td><td class="num">66.1</td><td class="num">9.55</td></tr>
+    <tr><td><strong>相对变化</strong></td><td class="num">+11.9%</td><td class="num">+16.2%</td><td class="num">+9.7%</td></tr>
+  </tbody>
+</table>
+<p>FDPN 的推理模型参数量由 19.873 M 增至 22.236 M，增加 11.9%；在 640×640 像素输入下，THOP 估计计算量由 56.9 增至 66.1 GFLOPs，增加 16.2%。原始记录中，RTX 3090 上 416×416 像素输入、批量为 4 的纯模型推理时间约增加 0.85 ms/图，即 9.7%，不含预处理与后处理。计算量统计和推理计时采用不同输入尺寸，二者分别报告，不据此推导统一的吞吐率结论。</p>
+<p>结合表 2，额外参数与计算开销对应约 1.22 个百分点的 AP50:95 平均增益，同时伴随 AP50 下降。该结果体现了具体配置下的精度—开销取舍，而非统一的效率提升。计时来自历史单次测试过程，未进行重复计时或部署硬件比较，因此仅作为描述性开销记录。</p>
+<h3>4.5 模块消融与作用分析</h3>
+<p>消融采用相同的 Penn–Fudan 30 轮协议，以独立重新训练的完整 FDPN 为同批对照。单核变体将两个聚焦阶段的核集合 {5,7,9,11} 改为 {5}；再聚焦变体以 1×1 投影替代第二阶段，保留 576 通道输出和最终跳跃连接。各变体维持解码器输入接口，但参数量不同。表 5 的差值均相对该批完整模型计算。</p>
+<table class="ablation">
+  <caption>表 5　Penn–Fudan 模块消融（30 轮；AP 单位为 %；差值相对同批完整模型）</caption>
+  <thead><tr><th>配置</th><th>参数量 / M</th><th>AP50</th><th>AP50:95</th><th>差值 / 百分点</th></tr></thead>
+  <tbody>
+    <tr><td>完整 FDPN（重新训练）</td><td>22.236</td><td>65.25</td><td>44.01</td><td>+0.00</td></tr>
+    <tr><td>仅用 5×5 核</td><td>21.992</td><td>59.67</td><td>38.02</td><td>−6.00</td></tr>
+    <tr><td>取消第二次聚焦</td><td>21.718</td><td>64.09</td><td>44.06</td><td>+0.05</td></tr>
+  </tbody>
+</table>
+<p><strong>多核上下文聚合。</strong>改用单个 5×5 核后，AP50:95 由 44.01% 降至 38.02%，按原始指标计算下降 6.00 个百分点，而参数量仅减少约 0.244 M，约占完整模型的 1.10%。源码中的两个聚焦阶段分别具有 384 和 576 个聚合通道；移除其余三个逐通道卷积分支所减少的权重与偏置数合计为 243,840，与模型参数差一致。该对照说明，在所测试配置中，多核分支以较小参数代价对应较高检测精度。但分支数量、最大核尺寸与感受野同时改变，实验不能区分核尺寸多样性、感受野扩大及容量变化各自的贡献。</p>
+<p><strong>第二次聚焦。</strong>以投影替代后，AP50:95 由 44.01% 变为 44.06%，差值为 +0.05 个百分点；参数量减少约 0.518 M，即 2.33%。与此同时，AP50 由 65.25% 降至 64.09%，按未舍入值计算下降 1.15 个百分点。因此，该变体主要体现参数开销与单阈值精度之间的取舍，不能解释为全面优于完整模型。由于各配置仅运行一次，近似持平的 AP50:95 亦不构成统计等效或第二阶段冗余的证据。</p>
+
+<h2>五、讨论</h2>
+<p><strong>结构解释与实验支持的范围。</strong>直接三尺度对齐和大核空间聚合为跨层信息交换提供了明确路径，但计算图只能说明信息如何传递，不能证明“语义冲突被消除”或“小目标特征得到保留”。当前实验支持的是完整配置在固定划分上的指标变化。要将增益归因于特定机制，仍需等宽度、等计算量的模块对照或相应的误差分组分析。</p>
+<p><strong>随机性与可重复性。</strong>三个随机种子的 FDPN AP50:95 样本标准差低于两组对照，但训练种子数量有限，且复用相同测试划分，不能据此认定更强的总体稳定性。初始完整模型与消融完整模型虽然声明相同种子，AP50:95 仍相差 2.84 个百分点，具体来源尚未隔离；二者分开报告，模块差异仅在同批对照内解释。</p>
+<p><strong>数据与外推限制。</strong>小测试集、公共子集的背景比例及 difficult/crowd 排除规则均限定了评价对象。公共子集结果为探索性单次比较，且测试集已被复用；本文未评估小目标、遮挡程度、跨域迁移或真实部署。因此，结论限于已报告的数据划分、训练预算与指标，不延伸为普遍的行人检测优势。</p>
+
+<h2>六、结论</h2>
+<p>本文对已有 FDPN 增强 RT-DETR-R18 配置进行了受控复现与组件分析。在 Penn–Fudan 三个随机种子的实验中，AP50:95 均值较原基线和参数量接近的加宽颈部分别提高 1.22 与 0.86 个百分点，但 AP50 均值下降，参数和计算开销增加。单次消融表明，多核配置相对单个 5×5 核具有较高的跨阈值 AP，而移除第二次聚焦主要降低参数量与 AP50，AP50:95 近似持平。公共子集结果进一步说明，融合配置的相对表现依赖训练预算。后续验证应优先采用计算开销匹配的对照、更多随机种子和独立测试划分，以区分结构收益、容量效应与实验波动。</p>
+<h2>致谢</h2>
+<p>感谢课程教师在视觉表示与实验评价方面的指导，以及开源软件维护者和所用模块实现的原作者。</p>
+<h2>参考文献</h2>
+<ol class="refs">
+  <li>N. Carion 等，“End-to-End Object Detection with Transformers,” ECCV, pp. 213–229, 2020.</li>
+  <li>A. Vaswani 等，“Attention Is All You Need,” NeurIPS, vol. 30, 2017.</li>
+  <li>Y. Zhao 等，“DETRs Beat YOLOs on Real-Time Object Detection,” CVPR, pp. 16965–16974, 2024.</li>
+  <li>X. Luo, Y. Peng, R. Xie, P. Li, and Y. Qian，“Enhanced Multi-Scale Feature Extraction Lightweight Network for Remote Sensing Object Detection,” <i>Computers, Materials &amp; Continua</i>, vol. 86, no. 3, p. 90, 2026.</li>
+  <li>X. Zhu 等，“Deformable DETR: Deformable Transformers for End-to-End Object Detection,” ICLR, 2021.</li>
+  <li>S. Liu 等，“DAB-DETR: Dynamic Anchor Boxes Are Better Queries for DETR,” ICLR, 2022.</li>
+  <li>H. Zhang 等，“DINO: DETR with Improved DeNoising Anchor Boxes for End-to-End Object Detection,” ICLR, 2023.</li>
+  <li>T.-Y. Lin 等，“Feature Pyramid Networks for Object Detection,” CVPR, pp. 2117–2125, 2017.</li>
+  <li>S. Liu 等，“Path Aggregation Network for Instance Segmentation,” CVPR, pp. 8759–8768, 2018.</li>
+  <li>魔傀面具，“基于 Ultralytics 的 RT-DETR 改进项目”，随附源码包与本地使用指南，2026.</li>
+  <li>M. Tan, R. Pang, and Q. V. Le，“EfficientDet: Scalable and Efficient Object Detection,” CVPR, pp. 10781–10790, 2020.</li>
+  <li>K. He, X. Zhang, S. Ren, and J. Sun，“Deep Residual Learning for Image Recognition,” CVPR, pp. 770–778, 2016.</li>
+  <li>L. Wang, J. Shi, G. Song, and I-fan Shen，“Object Detection Combining Recognition and Segmentation,” ACCV, pp. 189–199, 2007. DOI: 10.1007/978-3-540-76386-4_17.</li>
+  <li>Ultralytics，“Ultralytics, version 8.0.201,” software release, 2023. https://github.com/ultralytics/ultralytics/tree/v8.0.201.</li>
+  <li>A. Paszke 等，“PyTorch: An Imperative Style, High-Performance Deep Learning Library,” NeurIPS, vol. 32, 2019.</li>
+  <li>I. Loshchilov and F. Hutter，“Decoupled Weight Decay Regularization,” ICLR, 2019.</li>
+  <li>T.-Y. Lin 等，“Microsoft COCO: Common Objects in Context,” ECCV, pp. 740–755, 2014.</li>
+  <li>M. Everingham, L. Van Gool, C. K. I. Williams, J. Winn, and A. Zisserman，“The PASCAL Visual Object Classes (VOC) Challenge,” <i>International Journal of Computer Vision</i>, vol. 88, pp. 303–338, 2010. DOI: 10.1007/s11263-009-0275-4.</li>
+  <li>VOC2007 官方数据与划分说明：https://www.robots.ox.ac.uk/~vgg/projects/pascal/VOC/voc2007/index.html，访问日期 2026-10-16。</li>
+  <li>COCO2017 官方检测任务说明：https://cocodataset.org/dataset/detection-2017.htm，访问日期 2026-10-16。</li>
+</ol>
+<h2>附录 A　补充实验分析</h2>
+<h3>A.1 初始实验与训练曲线</h3>
+<p>初始 FDPN 与消融同批完整模型的 AP50:95 分别为 46.85% 和 44.01%，相差 2.84 个百分点，具体差异来源未被隔离。两次运行不并入后续三个随机种子的统计；模块消融以同批完整模型为参照。图 3 给出初始两组实验的验证曲线，30 轮末期指标仍在上升，说明现有预算不足以据此判定收敛。</p>
+<figure><img src="initial_penn_curves_column.png" alt="初始单种子 Penn–Fudan 训练验证曲线"><figcaption><strong>图 3　初始 Penn–Fudan 实验的验证集 AP 曲线。</strong>两组实验均训练 30 轮，随机种子为 2026。曲线反映单次训练过程，不表示随机种子间的波动；末期指标仍有上升，不能据此判定模型已经收敛。</figcaption></figure>
+<h3>A.2 训练预算比较</h3>
+<p>表 A1 汇总 FDPN 相对原基线的带符号差值，包括 COCO 在短预算下的 AP50 下降。100 轮实验属于复用既有测试划分的探索性扩展；各差值均先由未舍入指标计算，再统一保留两位小数。</p>
+<table class="budget-sensitivity">
+  <caption>表 A1　训练预算敏感性（FDPN − 基线，单位：百分点）</caption>
+  <thead><tr><th>数据集</th><th>轮数</th><th>ΔAP50</th><th>ΔAP50:95</th></tr></thead>
+  <tbody><tr><td>VOC-person</td><td>30</td><td>+9.24</td><td>+3.28</td></tr>
+<tr><td>VOC-person</td><td>100</td><td>+2.84</td><td>+0.56</td></tr>
+<tr><td>COCO-person</td><td>30</td><td>-0.61</td><td>+0.16</td></tr>
+<tr><td>COCO-person</td><td>100</td><td>+2.40</td><td>+1.19</td></tr></tbody>
+</table>
+<h3>A.3 随机种子与容量对照</h3>
+<p>原基线、FDPN 和 CCFF-320 在相同划分上分别以种子 2026、2027、2028 训练，统计见表 2，逐次分布见图 2。CCFF-320 保留原融合拓扑，其推理参数量为 22.029 M，与 FDPN 的 22.236 M 相差 0.93%，但未匹配计算量和推理时间。样本标准差采用 <i>n</i>=3、分母为 <i>n</i>−1 的定义，只描述固定测试划分上的种子波动。</p>
+<h2>附录 B　实现接口</h2>
+<p>第 11、18 层 FocusFeature 的参数相互独立，核集合均为 {5,7,9,11}。解码器读取第 24、18、21 层，分别对应步长 {8,16,32} 和通道数 {256,576,256}。输入投影将各尺度适配至 256 维隐藏表示；解码器使用三层结构和 300 个查询。骨干与 AIFI 的算子结构保持一致。</p>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "character_signature": "ad2a494a306dab302659ef80aa83e966176605dc7f88677a120e00b3a8cc979f",
+  "fonts": [
+    {
+      "file": "CourseSerif-Regular.ttf",
+      "source": "NotoSerifCJK-Regular.ttc",
+      "collection_member": "SC",
+      "glyphs": 701,
+      "sha256": "845ad0feacd37f2ce120ee0eb953a1fe0ceb8d59f7d1befcc81c829eadf13c6c"
+    },
+    {
+      "file": "CourseSerif-Semibold.ttf",
+      "source": "NotoSerifCJK-SemiBold.ttc",
+      "collection_member": "SC",
+      "glyphs": 701,
+      "sha256": "e70049d35966bfd5b80651cc86870181c9810451e939db20634b2ae4005896b1"
+    },
+    {
+      "file": "CourseHei-Bold.ttf",
+      "source": "NotoSansCJK-Bold.ttc",
+      "collection_member": "SC",
+      "glyphs": 701,
+      "sha256": "38ba6486009024a9030ff788d1491766f29ccae966b2c619203d856c83c95e5d"
+    }
+  ]
+}

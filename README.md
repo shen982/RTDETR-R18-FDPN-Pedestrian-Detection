@@ -1,10 +1,16 @@
-# Evaluating Focus--Diffusion Feature Fusion for Data-Limited Pedestrian Detection
+# Controlled Evaluation of Focus--Diffusion Feature Fusion for Data-Limited Pedestrian Detection
 
 Jiaxu Chen · Department of Automation, North China Electric Power University, Baoding, China
 
 Contact: 17736460722@163.com
 
-Read the **[English paper](paper/main.pdf)**. This course project evaluates an existing FDPN configuration in RT-DETR-R18, with attribution to its source bundle and related focus--diffusion research. Its contributions are controlled evaluation and component analysis.
+课程提交稿：**[中文论文（含中英题目、署名、摘要和关键词）](paper/chinese_version/陈佳旭_多核上下文聚焦融合_课程论文.pdf)**。
+
+The **[English edition](paper/main.pdf)** is also retained. This course project evaluates an existing FDPN configuration in RT-DETR-R18, with attribution to its source bundle and related focus--diffusion research. Its contributions are controlled evaluation and component analysis.
+
+[Download the course PDF](https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/raw/refs/heads/main/paper/chinese_version/陈佳旭_多核上下文聚焦融合_课程论文.pdf) · [Download repository ZIP](https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/archive/refs/heads/main.zip)
+
+The final course submission is the Chinese PDF under `paper/chinese_version/`, with bilingual front matter and a single lower-left GitHub link. Older tagged English paper releases are historical versions. Large datasets and checkpoints remain in the releases linked below.
 
 ## Main findings
 
@@ -34,6 +40,7 @@ The program downloads and checks the full runtime, all **1,070 exact study image
 
 | Material | Location |
 | --- | --- |
+| Chinese course PDF, editable HTML, build scripts and figures | [paper/chinese_version/](paper/chinese_version/) |
 | English PDF, LaTeX, figures, tables and bibliography | [paper/](paper/) |
 | Runtime v5 and three exact dataset ZIPs | [v1.1.0 assets](https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/tag/v1.1.0) |
 | All five weight archives, 22 checkpoints | [v1.0.0 assets](https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/tag/v1.0.0) |

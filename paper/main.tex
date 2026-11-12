@@ -22,13 +22,11 @@
 \newcommand{\projectrepository}{\url{https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection}}
 \makeatletter
 \def\ps@projectfirst{%
-  \def\@oddfoot{\parbox[b]{\textwidth}{\centering\footnotesize
-    \textbf{GitHub: }\projectrepository\\[2pt]
-    Source code, exact datasets, and all 22 checkpoints are downloadable without login.\\
-    Follow the \href{https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/blob/main/docs/REPRODUCTION.md}{\textbf{reproduction guide}} to install dependencies and evaluate saved weights; retraining is optional.}}%
+  \def\@oddfoot{\parbox[b]{\textwidth}{\raggedright\footnotesize
+    \projectrepository}}%
   \let\@evenfoot\@oddfoot}
 \makeatother
-\setlength{\footskip}{34pt}
+\setlength{\footskip}{24pt}
 
 \title{Evaluating Focus--Diffusion Feature Fusion\\for Data-Limited Pedestrian Detection}
 

@@ -1,6 +1,6 @@
 # Reproduce the paper
 
-The submission is the English [paper](../paper/main.pdf). This repository provides its source, exact study datasets, all 22 selected checkpoints, configurations, and recorded training/test evidence. Checkpoints remain in **v1.0.0**; complete datasets and the portable runtime are in **v1.1.0**. The program uses both releases automatically.
+The course submission is the [Chinese paper with bilingual front matter](../paper/chinese_version/陈佳旭_多核上下文聚焦融合_课程论文.pdf); the [English edition](../paper/main.pdf) is retained. This repository provides its source, exact study datasets, all 22 selected checkpoints, configurations, and recorded training/test evidence. Checkpoints remain in **v1.0.0**; complete datasets and the portable runtime are in **v1.1.0**. The program uses both releases automatically.
 
 ## Install
 

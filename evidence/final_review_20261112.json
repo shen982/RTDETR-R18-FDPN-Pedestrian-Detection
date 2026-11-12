@@ -1,0 +1,568 @@
+{
+  "review_date": "2026-11-12",
+  "repository": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection",
+  "manuscript": {
+    "pages": 6,
+    "format": "A4, Chinese two-column body with Chinese and English titles, author/affiliation, abstracts and keywords",
+    "required_sections_verified": [
+      "有限标注行人检测中聚焦",
+      "陈佳旭",
+      "华北电力大学",
+      "摘要",
+      "关键词",
+      "ControlledEvaluationofFocus",
+      "JiaxuChen",
+      "DepartmentofAutomation",
+      "Abstract",
+      "Keywords",
+      "一、引言",
+      "二、相关工作",
+      "三、方法",
+      "四、实验",
+      "五、讨论",
+      "六、结论",
+      "参考文献"
+    ],
+    "reference_entries": 20,
+    "project_links": [
+      {
+        "page": 1,
+        "rect": [
+          51.02362,
+          22.67717,
+          251.8635,
+          34.01575
+        ],
+        "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection"
+      }
+    ],
+    "sha256": "3f6ec55afcb80f2ce6b63a452fbba257312ef2ce0a59506fb5bacdacd68f26a2",
+    "ablation_correction": "Refocusing has no observed AP50:95 gain but favors AP50; removing it reduces AP50 by 1.15 percentage points from unrounded records.",
+    "rubric": "Course assignment: reproduce existing computer vision work, retain verifiable experimental results, supply baseline and FDPN code/checkpoints, and analyze results. No frontier architectural novelty is required.",
+    "edition": "Selected Chinese course submission"
+  },
+  "public_assets": {
+    "count": 9,
+    "checkpoints": 22,
+    "dataset_images": 1070,
+    "verification_method": "Anonymous HTTP 206 requests checked the first and last 1024 bytes of each published asset. GitHub API SHA-256 digests and sizes matched complete local archives, which also passed ZIP CRC checks. The runtime v5 was additionally downloaded in full anonymously during this review.",
+    "assets": [
+      {
+        "file": "public_runtime_code_v5.zip",
+        "bytes": 9398693,
+        "sha256": "761695e5f647628b62ed2bc2b502640799ab562609cf8e0187d83a3ac41b957f",
+        "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.1.0/public_runtime_code_v5.zip",
+        "kind": "runtime",
+        "anonymous_range_checks": [
+          {
+            "status": 206,
+            "range": "bytes 0-1023/9398693",
+            "matches_full_archive": true
+          },
+          {
+            "status": 206,
+            "range": "bytes 9397669-9398692/9398693",
+            "matches_full_archive": true
+          }
+        ],
+        "github_digest_matches_complete_archive": true,
+        "zip_crc": "passed",
+        "checkpoints": 0,
+        "dataset_images": 0
+      },
+      {
+        "file": "dataset_pennfudan_yolo.zip",
+        "bytes": 53275097,
+        "sha256": "a73a78c47e971fd13a674ba43a67e6156b67773c5780a330c15355474a372726",
+        "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.1.0/dataset_pennfudan_yolo.zip",
+        "kind": "dataset",
+        "dataset": "pennfudan_yolo",
+        "anonymous_range_checks": [
+          {
+            "status": 206,
+            "range": "bytes 0-1023/53275097",
+            "matches_full_archive": true
+          },
+          {
+            "status": 206,
+            "range": "bytes 53274073-53275096/53275097",
+            "matches_full_archive": true
+          }
+        ],
+        "github_digest_matches_complete_archive": true,
+        "zip_crc": "passed",
+        "checkpoints": 0,
+        "dataset_images": 170
+      },
+      {
+        "file": "dataset_voc2007_person450.zip",
+        "bytes": 40349981,
+        "sha256": "5985a9f8984f70a6d8f487592e6bcfcc8fb6c70a2fb2584209688cedb240482c",
+        "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.1.0/dataset_voc2007_person450.zip",
+        "kind": "dataset",
+        "dataset": "voc2007_person450",
+        "anonymous_range_checks": [
+          {
+            "status": 206,
+            "range": "bytes 0-1023/40349981",
+            "matches_full_archive": true
+          },
+          {
+            "status": 206,
+            "range": "bytes 40348957-40349980/40349981",
+            "matches_full_archive": true
+          }
+        ],
+        "github_digest_matches_complete_archive": true,
+        "zip_crc": "passed",
+        "checkpoints": 0,
+        "dataset_images": 450
+      },
+      {
+        "file": "dataset_coco2017_person450.zip",
+        "bytes": 72851770,
+        "sha256": "d44b9beb4f07b6677473b005a70102c9669148f45de1107648e365f065e9c0cc",
+        "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.1.0/dataset_coco2017_person450.zip",
+        "kind": "dataset",
+        "dataset": "coco2017_person450",
+        "anonymous_range_checks": [
+          {
+            "status": 206,
+            "range": "bytes 0-1023/72851770",
+            "matches_full_archive": true
+          },
+          {
+            "status": 206,
+            "range": "bytes 72850746-72851769/72851770",
+            "matches_full_archive": true
+          }
+        ],
+        "github_digest_matches_complete_archive": true,
+        "zip_crc": "passed",
+        "checkpoints": 0,
+        "dataset_images": 450
+      },
+      {
+        "file": "public_weights_initial_penn.zip",
+        "bytes": 156967156,
+        "sha256": "0888077e3f6c6ebb6d6b8f5ce9627d7daaa5fce0d23216fd237de0dfb060c641",
+        "kind": "weights",
+        "group": "initial_penn",
+        "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.0.0/public_weights_initial_penn.zip",
+        "anonymous_range_checks": [
+          {
+            "status": 206,
+            "range": "bytes 0-1023/156967156",
+            "matches_full_archive": true
+          },
+          {
+            "status": 206,
+            "range": "bytes 156966132-156967155/156967156",
+            "matches_full_archive": true
+          }
+        ],
+        "github_digest_matches_complete_archive": true,
+        "zip_crc": "passed",
+        "checkpoints": 2,
+        "dataset_images": 0
+      },
+      {
+        "file": "public_weights_public_e30.zip",
+        "bytes": 313898734,
+        "sha256": "e4413760d30076f16744392cd9aaa03cf84081a41d07288d59b8e7027d27db96",
+        "kind": "weights",
+        "group": "public_e30",
+        "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.0.0/public_weights_public_e30.zip",
+        "anonymous_range_checks": [
+          {
+            "status": 206,
+            "range": "bytes 0-1023/313898734",
+            "matches_full_archive": true
+          },
+          {
+            "status": 206,
+            "range": "bytes 313897710-313898733/313898734",
+            "matches_full_archive": true
+          }
+        ],
+        "github_digest_matches_complete_archive": true,
+        "zip_crc": "passed",
+        "checkpoints": 4,
+        "dataset_images": 0
+      },
+      {
+        "file": "public_weights_public_e100.zip",
+        "bytes": 314968129,
+        "sha256": "356c104b7d373cb8f50e1a36f734823cfb6cdd235efbd60ed4ae3d50f911d23b",
+        "kind": "weights",
+        "group": "public_e100",
+        "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.0.0/public_weights_public_e100.zip",
+        "anonymous_range_checks": [
+          {
+            "status": 206,
+            "range": "bytes 0-1023/314968129",
+            "matches_full_archive": true
+          },
+          {
+            "status": 206,
+            "range": "bytes 314967105-314968128/314968129",
+            "matches_full_archive": true
+          }
+        ],
+        "github_digest_matches_complete_archive": true,
+        "zip_crc": "passed",
+        "checkpoints": 4,
+        "dataset_images": 0
+      },
+      {
+        "file": "public_weights_ablation.zip",
+        "bytes": 245742964,
+        "sha256": "5a2f18399d788b87e307ef578c9c180d375d22bef5642e74c017b70bc4d11e93",
+        "kind": "weights",
+        "group": "ablation",
+        "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.0.0/public_weights_ablation.zip",
+        "anonymous_range_checks": [
+          {
+            "status": 206,
+            "range": "bytes 0-1023/245742964",
+            "matches_full_archive": true
+          },
+          {
+            "status": 206,
+            "range": "bytes 245741940-245742963/245742964",
+            "matches_full_archive": true
+          }
+        ],
+        "github_digest_matches_complete_archive": true,
+        "zip_crc": "passed",
+        "checkpoints": 3,
+        "dataset_images": 0
+      },
+      {
+        "file": "public_weights_robustness.zip",
+        "bytes": 718220237,
+        "sha256": "9b367dec998240e5f115b4dfe778a5a222b95aea73b157680a20919ad1a3cad2",
+        "kind": "weights",
+        "group": "robustness",
+        "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection/releases/download/v1.0.0/public_weights_robustness.zip",
+        "anonymous_range_checks": [
+          {
+            "status": 206,
+            "range": "bytes 0-1023/718220237",
+            "matches_full_archive": true
+          },
+          {
+            "status": 206,
+            "range": "bytes 718219213-718220236/718220237",
+            "matches_full_archive": true
+          }
+        ],
+        "github_digest_matches_complete_archive": true,
+        "zip_crc": "passed",
+        "checkpoints": 9,
+        "dataset_images": 0
+      }
+    ]
+  },
+  "automated_tests": {
+    "passed": 13,
+    "notes": "11 checks passed in the sandbox; 2 HTTP-resume/checksum checks passed outside the sandbox because they require a loopback HTTP server."
+  },
+  "scope": "Manuscript and distribution review. The recorded 22-run GPU reevaluation remains in evidence/reproduction_validation/; training and inference were not repeated for this footer revision.",
+  "fresh_extraction_verification": "Verified 4486 frozen source/data files and 22 checkpoints.",
+  "course_submission": {
+    "pages": 6,
+    "format": "A4, Chinese two-column body with Chinese and English titles, author/affiliation, abstracts and keywords",
+    "required_sections_verified": [
+      "有限标注行人检测中聚焦",
+      "陈佳旭",
+      "华北电力大学",
+      "摘要",
+      "关键词",
+      "ControlledEvaluationofFocus",
+      "JiaxuChen",
+      "DepartmentofAutomation",
+      "Abstract",
+      "Keywords",
+      "一、引言",
+      "二、相关工作",
+      "三、方法",
+      "四、实验",
+      "五、讨论",
+      "六、结论",
+      "参考文献"
+    ],
+    "reference_entries": 20,
+    "project_links": [
+      {
+        "page": 1,
+        "rect": [
+          51.02362,
+          22.67717,
+          251.8635,
+          34.01575
+        ],
+        "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection"
+      }
+    ],
+    "sha256": "3f6ec55afcb80f2ce6b63a452fbba257312ef2ce0a59506fb5bacdacd68f26a2",
+    "ablation_correction": "Refocusing has no observed AP50:95 gain but favors AP50; removing it reduces AP50 by 1.15 percentage points from unrounded records.",
+    "rubric": "Course assignment: reproduce existing computer vision work, retain verifiable experimental results, supply baseline and FDPN code/checkpoints, and analyze results. No frontier architectural novelty is required."
+  },
+  "selected_submission": "paper/chinese_version/陈佳旭_多核上下文聚焦融合_课程论文.pdf",
+  "publication_status": "This review describes files prepared for publication. Publication is established by the public repository commit containing this record; existing source, datasets and 22 checkpoints are public and verified.",
+  "typography": {
+    "chinese_body": "CourseSerif (renamed Noto Serif CJK SC subset)",
+    "chinese_headings": "CourseHei (renamed Noto Sans CJK SC subset)",
+    "latin": "Liberation Serif regular, bold, italic and bold italic",
+    "mathematics": "STIX vector glyphs, real summation and sized delimiters",
+    "scripts": "70 percent size; subscript rise 15 percent, superscript rise 35 percent",
+    "punctuation": "Chinese comma, semicolon, colon and closing punctuation protected from line starts",
+    "all_numeric_html_tokens_unchanged": false,
+    "pages_before": 7,
+    "pages_after": 6,
+    "font_licenses": "paper/chinese_version/fonts/LICENSES.txt",
+    "all_rendered_text_glyphs_available": true,
+    "pdf_fonts_embedded": true,
+    "astral_math_text_mapping": "UTF-16BE surrogate pairs in PDF ToUnicode CMaps",
+    "independent_extracted_package_rebuild": {
+      "source_pdf_sha256": "3f6ec55afcb80f2ce6b63a452fbba257312ef2ce0a59506fb5bacdacd68f26a2",
+      "pages": 6,
+      "all_page_text_matches": true,
+      "all_fonts_embedded": true,
+      "valid_utf16_math_mappings": true,
+      "font_resources_checked": 14
+    },
+    "experimental_table_numbers_unchanged": true,
+    "new_descriptive_numbers_verified_from_archived_runs": true
+  },
+  "english_manuscript": {
+    "pages": 7,
+    "github_links": [
+      {
+        "page": 1,
+        "url": "https://github.com/shen982/RTDETR-R18-FDPN-Pedestrian-Detection",
+        "rect": [
+          48.964,
+          19.877,
+          279.651,
+          30.526
+        ]
+      }
+    ],
+    "labels": 11,
+    "citations": 20,
+    "verified_run_records": 22,
+    "statistics": {
+      "baseline": {
+        "metrics/mAP50(B)": {
+          "mean": 65.59498648738936,
+          "sd": 2.6501062646260314
+        },
+        "metrics/mAP50-95(B)": {
+          "mean": 41.31251983377294,
+          "sd": 0.810687484447975
+        }
+      },
+      "ccff320": {
+        "metrics/mAP50(B)": {
+          "mean": 65.71338396343452,
+          "sd": 5.020532534757137
+        },
+        "metrics/mAP50-95(B)": {
+          "mean": 41.67853117084878,
+          "sd": 1.911864109783017
+        }
+      },
+      "fdpn": {
+        "metrics/mAP50(B)": {
+          "mean": 64.17291022847478,
+          "sd": 2.2871249402272062
+        },
+        "metrics/mAP50-95(B)": {
+          "mean": 42.536002469869096,
+          "sd": 0.26665686052509857
+        }
+      }
+    }
+  },
+  "academic_revision": {
+    "tables": 6,
+    "table_cell_numbers_unchanged": true,
+    "equations_unchanged": true,
+    "reference_entries_unchanged": true,
+    "added_analysis": [
+      "Paired AP differences for all three seeds and both controls",
+      "Ablation parameter reductions and code-derived 243840-parameter multi-kernel difference",
+      "Metric-specific interpretation without localization or occlusion causal claims",
+      "Independent training-budget comparisons and explicit test-reuse limitations"
+    ],
+    "title": "有限标注行人检测中聚焦—扩散特征融合的受控评估与组件分析"
+  },
+  "scientific_description_checks": {
+    "verified_runs": 22,
+    "paired_ap5095_pp": {
+      "baseline": [
+        1.88,
+        1.06,
+        0.74
+      ],
+      "ccff320": [
+        -1.2,
+        2.65,
+        1.12
+      ]
+    },
+    "multi_kernel_parameter_difference": 243840,
+    "multi_kernel_relative_percent": 1.1,
+    "refocus_parameter_difference": 518208,
+    "refocus_relative_percent": 2.33,
+    "raw_latency_increase_ms_per_image": 0.8460617065429688,
+    "scope": "Computed from existing archived runs; no new experiment claimed."
+  },
+  "layout": {
+    "pages": 6,
+    "body_font_size": 9.4,
+    "body_leading": 14.8,
+    "columns": [
+      {
+        "page": 1,
+        "column": "full",
+        "top": 793.700787401575,
+        "bottom": 48.18897637795276,
+        "content_bottom": 332.10078740157496,
+        "remaining_points": 283.91
+      },
+      {
+        "page": 1,
+        "column": "left",
+        "top": 323.10078740157496,
+        "bottom": 48.18897637795276,
+        "content_bottom": 61.30078740157495,
+        "remaining_points": 13.11
+      },
+      {
+        "page": 1,
+        "column": "right",
+        "top": 323.10078740157496,
+        "bottom": 48.18897637795276,
+        "content_bottom": 59.00078740157493,
+        "remaining_points": 10.81
+      },
+      {
+        "page": 2,
+        "column": "left",
+        "top": 393.0749606299214,
+        "bottom": 48.18897637795276,
+        "content_bottom": 55.874960629921375,
+        "remaining_points": 7.69
+      },
+      {
+        "page": 2,
+        "column": "right",
+        "top": 393.0749606299214,
+        "bottom": 48.18897637795276,
+        "content_bottom": 60.3749606299214,
+        "remaining_points": 12.19
+      },
+      {
+        "page": 3,
+        "column": "left",
+        "top": 793.700787401575,
+        "bottom": 48.18897637795276,
+        "content_bottom": 79.00078740157498,
+        "remaining_points": 30.81
+      },
+      {
+        "page": 3,
+        "column": "right",
+        "top": 793.700787401575,
+        "bottom": 48.18897637795276,
+        "content_bottom": 63.80078740157492,
+        "remaining_points": 15.61
+      },
+      {
+        "page": 4,
+        "column": "left",
+        "top": 582.3906739993724,
+        "bottom": 48.18897637795276,
+        "content_bottom": 65.13870549543533,
+        "remaining_points": 16.95
+      },
+      {
+        "page": 4,
+        "column": "right",
+        "top": 582.3906739993724,
+        "bottom": 48.18897637795276,
+        "content_bottom": 54.68673699149838,
+        "remaining_points": 6.5
+      },
+      {
+        "page": 5,
+        "column": "left",
+        "top": 793.700787401575,
+        "bottom": 48.18897637795276,
+        "content_bottom": 55.34881889763792,
+        "remaining_points": 7.16
+      },
+      {
+        "page": 5,
+        "column": "right",
+        "top": 793.700787401575,
+        "bottom": 48.18897637795276,
+        "content_bottom": 69.44881889763775,
+        "remaining_points": 21.26
+      },
+      {
+        "page": 6,
+        "column": "left",
+        "top": 793.700787401575,
+        "bottom": 48.18897637795276,
+        "content_bottom": 62.00078740157474,
+        "remaining_points": 13.81
+      },
+      {
+        "page": 6,
+        "column": "right",
+        "top": 793.700787401575,
+        "bottom": 48.18897637795276,
+        "content_bottom": 46.23584388907926,
+        "remaining_points": -1.95
+      }
+    ]
+  },
+  "visual_checks": {
+    "rendered_pages": 6,
+    "source_text_characters_checked": 13195,
+    "missing_glyphs": [],
+    "text_within_margins": true,
+    "chinese_optical_hanging_punctuation_maximum": "one em",
+    "max_unused_body_column_points": 30.81,
+    "page_bottoms": [
+      {
+        "page": 1,
+        "body_bottom_y": 777.017721
+      },
+      {
+        "page": 2,
+        "body_bottom_y": 779.24284
+      },
+      {
+        "page": 3,
+        "body_bottom_y": 771.31701
+      },
+      {
+        "page": 4,
+        "body_bottom_y": 782.60013
+      },
+      {
+        "page": 5,
+        "body_bottom_y": 780.669691
+      },
+      {
+        "page": 6,
+        "body_bottom_y": 789.782671
+      }
+    ]
+  }
+}

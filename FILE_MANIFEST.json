@@ -16,8 +16,8 @@
     "sha256": "58f6e182958205fdce236d26439cf7a1d2d440029adcd4e7d64308562fa4e1a5"
   },
   "README.md": {
-    "bytes": 3367,
-    "sha256": "23e8a1e3e89b03369255592dee569eae3c0bede38316f0bcadf449c83416d402"
+    "bytes": 4266,
+    "sha256": "bfb1f11a7ec4abd7e9aec1e630696f51ee2f96fb83f57dc95fdcd393a155aaad"
   },
   "artifacts/README.md": {
     "bytes": 632,
@@ -56,8 +56,8 @@
     "sha256": "1114f2d508d2129b697bba2dd59a4f118470d2b022d8b79551286b8f403441e7"
   },
   "docs/REPRODUCTION.md": {
-    "bytes": 6889,
-    "sha256": "332a49530dbdc8be8123fb2f0c75476e0c59feabfd5064a5435c72c63cb1b5ce"
+    "bytes": 7040,
+    "sha256": "96da8fc6bcd5143a5cc003c9d9644c642ef604578851935a5d9f387c02197b13"
   },
   "evidence/README.md": {
     "bytes": 887,
@@ -86,6 +86,10 @@
   "evidence/fdpn_ablation/summary.json": {
     "bytes": 707,
     "sha256": "4025c2dee6822213eba1776674d0ca7547c8b46e01ae6414fa926f5f29e4f4ec"
+  },
+  "evidence/final_review_20261112.json": {
+    "bytes": 18982,
+    "sha256": "f7520729f3b01399ee7ebe0984be74064f2527902a482ea1b98ff16ee63b8c80"
   },
   "evidence/public_multidataset_e100/summary.json": {
     "bytes": 1321,
@@ -712,8 +716,68 @@
     "sha256": "c69869cd518cc3ac159d155fe917ebbdc047d4cdc2633cc672516d3bdff06c9f"
   },
   "paper/README.md": {
-    "bytes": 932,
-    "sha256": "2690a400d3d8a63900610689d07133c5f9307a1a1ac1d90cedb0fb03960e3c9c"
+    "bytes": 1251,
+    "sha256": "499d4d20fe936ead152e98807b64e7069849e43ec774b91bbfd7cc3ffdcf83fc"
+  },
+  "paper/chinese_version/README.md": {
+    "bytes": 2535,
+    "sha256": "f3517deb1e35e8fee5c8b12b07e9bc9c1be622e617acc04c8065c419770826b5"
+  },
+  "paper/chinese_version/architecture_visio_revision.png": {
+    "bytes": 860214,
+    "sha256": "bd64630b76c80e95ce2e0b6910e1ffb8429a907bae8e6f18b32a7d077dd55648"
+  },
+  "paper/chinese_version/build_course_pdf.py": {
+    "bytes": 12601,
+    "sha256": "5ed21554ab8c2f8dee0a4049081e2c50123e4343f446dd79e98c690d11a79c3d"
+  },
+  "paper/chinese_version/build_zh_pdf.py": {
+    "bytes": 18795,
+    "sha256": "7c37acbb3d1f1cd6f59101d6f2734ccfc5637204fa97a2d1dbf114f29cba171d"
+  },
+  "paper/chinese_version/course_typography.py": {
+    "bytes": 6968,
+    "sha256": "abfd9799e7a90ad29465c2388e66bf87ce9b775a046235adf61ed5768cec6e59"
+  },
+  "paper/chinese_version/fonts/CourseHei-Bold.ttf": {
+    "bytes": 162340,
+    "sha256": "38ba6486009024a9030ff788d1491766f29ccae966b2c619203d856c83c95e5d"
+  },
+  "paper/chinese_version/fonts/CourseSerif-Regular.ttf": {
+    "bytes": 218244,
+    "sha256": "845ad0feacd37f2ce120ee0eb953a1fe0ceb8d59f7d1befcc81c829eadf13c6c"
+  },
+  "paper/chinese_version/fonts/CourseSerif-Semibold.ttf": {
+    "bytes": 219616,
+    "sha256": "e70049d35966bfd5b80651cc86870181c9810451e939db20634b2ae4005896b1"
+  },
+  "paper/chinese_version/fonts/LICENSES.txt": {
+    "bytes": 5720,
+    "sha256": "7341555d257f56c9eeb0196e0bc178d988b774d1733ec5d1160f288f478ecf40"
+  },
+  "paper/chinese_version/fonts/SUBSETS.json": {
+    "bytes": 811,
+    "sha256": "1af15e83faccc41ca195f012df61301a62edad5c92e9f426fc07ddd8725bdeae"
+  },
+  "paper/chinese_version/initial_penn_curves_column.png": {
+    "bytes": 86848,
+    "sha256": "d4c4e62ab209ecf51d6e4aba747f20318b8695033431ce16ab73954cfeb64dfc"
+  },
+  "paper/chinese_version/main_zh.html": {
+    "bytes": 36826,
+    "sha256": "5b2eb4da272606a1206af7d9dface849b919f405ea30364b76a78a461f6126fc"
+  },
+  "paper/chinese_version/prepare_course_fonts.py": {
+    "bytes": 3476,
+    "sha256": "2df7cab692d4ff4f223d1fac3adc80d447c07320c9230c1ef5145afdc062f06d"
+  },
+  "paper/chinese_version/robustness_summary.png": {
+    "bytes": 65535,
+    "sha256": "0f0586ec91a7cf3da7019cd62e27c4f506c3a2e0c039bc8d6cb111b4319250ca"
+  },
+  "paper/chinese_version/\u9648\u4f73\u65ed_\u591a\u6838\u4e0a\u4e0b\u6587\u805a\u7126\u878d\u5408_\u8bfe\u7a0b\u8bba\u6587.pdf": {
+    "bytes": 1639282,
+    "sha256": "3f6ec55afcb80f2ce6b63a452fbba257312ef2ce0a59506fb5bacdacd68f26a2"
   },
   "paper/figures/architecture_visio_revision.pdf": {
     "bytes": 1681875,
@@ -727,13 +791,17 @@
     "bytes": 14567,
     "sha256": "a6b1e5574bd7f5a17094f329b9167da5e57e4029dc665ac23269ed1fdc5c0da6"
   },
+  "paper/figures/robustness_summary_column.png": {
+    "bytes": 49114,
+    "sha256": "566d6317aa11bfd397bbe87aa41f52e5d8d0c5d859716697e355264d808b449c"
+  },
   "paper/main.pdf": {
-    "bytes": 1792232,
-    "sha256": "71e96da8056df5af804c5e7bc6bd9f9450939265340e2a7efa51ac2cbf9c6616"
+    "bytes": 1791729,
+    "sha256": "d97dfb767514235c43cfe2792951b52c3866f9b1b60b3c4dbd5854732872e76f"
   },
   "paper/main.tex": {
-    "bytes": 31874,
-    "sha256": "8fe38e125366bb624dbc92c5fcf35080eb679306e845ae7435eec872d6ee987c"
+    "bytes": 31540,
+    "sha256": "91369b694a9ac174454e58bfd526af086571bb24041753cf5a7118f4ba380930"
   },
   "paper/references.bib": {
     "bytes": 7189,
